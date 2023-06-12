@@ -1,0 +1,363 @@
+@import '../themes/varible.scss';
+@import '../themes/mixin.scss';
+
+
+.detail-product {
+    margin-top: 58px;
+
+    @media screen and (max-width:576px) {
+        margin-top: 45px;
+    }
+
+    .container {
+
+        .row {
+            .col-5 {
+                position: relative;
+
+
+                .detail-img {
+                    position: absolute;
+                    z-index: 10;
+
+                    img {
+                        width: 90%;
+                        padding-left: 65px;
+
+                        @media screen and (max-width:768px) {
+                            width: 100%;
+                            padding-left: 0px;
+                        }
+
+                        @media screen and (max-width:576px) {
+                            width: 95%;
+                            padding-left: -10px;
+                        }
+                    }
+                }
+
+
+                .bg-img {
+                    position: absolute;
+                    top: -147px;
+                    left: -76px;
+                    z-index: 1;
+
+                    @media screen and (max-width:768px) {
+                        top: -127px;
+                        left: -107px;
+                    }
+
+                    @media screen and (max-width:576px) {
+                        top: -82px;
+                        left: -74px;
+                    }
+
+                    img {
+                        width: 140%;
+
+                        @media screen and (max-width:576px) {
+                            width: 130%;
+                        }
+
+                    }
+                }
+            }
+
+            .col-7 {
+                position: relative;
+                z-index: 100;
+                padding-left: 128px;
+
+                @media screen and (max-width:768px) {
+                    padding-left: 55px;
+                    margin-top: -30px;
+                }
+
+                h3 {
+                    font-size: 30px;
+
+                    @media screen and (max-width:768px) {
+                        font-size: $fs-7;
+                    }
+
+                    @media screen and (max-width:576px) {
+                        font-size: $fs-6;
+                    }
+                }
+
+                p {
+                    @include text($fs-3, $fw-regular, 19.36px, $text-dark-c0);
+
+                    @media screen and (max-width:768px) {
+                        @include text($fs-2, $fw-light, 15.36px, $text-dark-c0);
+                    }
+
+                    @media screen and (max-width:576px) {
+                        @include text($fs-1, $fw-xlight, 13.36px, $text-dark-c0);
+                        margin-bottom: 0;
+                    }
+                }
+
+                h4 {
+                    @include text($fs-7, $fw-medium, 29.05px, #1ED90E);
+
+                    @media screen and (max-width:768px) {
+                        font-size: $fs-6;
+                    }
+
+                    @media screen and (max-width:576px) {
+                        font-size: $fs-4;
+                    }
+                }
+
+                .btn-size {
+                    button {
+                        width: 40px;
+                        height: 40px;
+                        font-size: $fs-4;
+                        line-height: 40px;
+                        background-color: #CCCCCC;
+
+                        @media screen and (max-width:768px) {
+                            width: 35px;
+                            height: 35px;
+                            line-height: 35px;
+                        }
+
+                        @media screen and (max-width:576px) {
+                            width: 33px;
+                            height: 30px;
+                            line-height: 30px;
+                            font-size: $fs-2;
+                        }
+                    }
+                }
+
+                h1 {
+                    @include text(30px, $fw-semibold, 36.31px, #FC0303);
+                    margin-top: 17px;
+
+                    @media screen and (max-width:768px) {
+                        font-size: $fs-7;
+                    }
+
+                    @media screen and (max-width:576px) {
+                        font-size: $fs-5;
+                        margin: 0;
+                    }
+                }
+
+                .detail-quantity {
+                    font-size: $fs-5;
+
+                    @media screen and (max-width:576px) {
+                        margin-bottom: 10px;
+                    }
+                }
+
+
+                .btn-increase {
+                    margin-bottom: 20px;
+
+                    .increase,
+                    .reduce {
+                        width: 50px;
+                        height: 50px;
+                        background: $bg-gra-c0;
+                        font-size: $fs-7;
+
+                        @media screen and (max-width:768px) {
+                            width: 40px;
+                            height: 40px;
+                            font-size: $fs-6;
+                            line-height: 20px;
+                        }
+
+                        @media screen and (max-width:576px) {
+                            width: 35px;
+                            height: 35px;
+                            font-size: $fs-5;
+                            line-height: 20px;
+                        }
+                    }
+
+                    input {
+                        font-size: 28px;
+                        text-align: center;
+                        vertical-align: middle;
+                        height: 50px;
+                        width: 100px;
+
+                        @media screen and (max-width:768px) {
+                            height: 40px;
+                            width: 60px;
+                            font-size: $fs-6;
+                        }
+
+                        @media screen and (max-width:576px) {
+                            height: 35px;
+                            width: 60px;
+                            font-size: $fs-5;
+                        }
+                    }
+
+
+                }
+
+                .btn-add {
+                    color: $text-light-c0;
+                    width: 150px;
+                    padding: 13px 0;
+                    background: $bg-gra-c1;
+                    transition: all .5s;
+                    background-size: 100%;
+
+                    @media screen and (max-width:576px) {
+                        height: 45px;
+                        width: 140px;
+                    }
+
+                    &:hover {
+                        background-size: 300%;
+                        background-position: left center;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+.product-item {
+    margin: 100px 0;
+    position: relative;
+    z-index: 100;
+
+    .container {
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            @media screen and (max-width:576px) {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .cards-item {
+                display: flex;
+                padding: 1rem;
+
+                @media(min-width: 40rem) {
+                    width: 50%;
+                }
+
+                @media(min-width: 56rem) {
+                    width: calc(100%/3);
+                }
+
+                .card {
+                    background-color: white;
+                    border-radius: 0.25rem;
+                    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+
+                    &:hover {
+                        .card__image {
+                            filter: contrast(100%);
+                        }
+                    }
+
+                    .card-image {
+                        border-top-left-radius: 0.25rem;
+                        border-top-right-radius: 0.25rem;
+                        filter: contrast(70%);
+                        //filter: saturate(180%);
+                        overflow: hidden;
+                        position: relative;
+                        transition: filter 0.5s cubic-bezier(.43, .41, .22, .91);
+                        ;
+
+                        &::before {
+                            content: "";
+                            display: block;
+                            // padding-top: 56.25%; // 16:9 aspect ratio
+                        }
+
+                        @media(min-width: 40rem) {
+                            // &::before {
+                            //   padding-top: 66.6%; // 3:2 aspect ratio
+                            // }
+                        }
+
+                        img {
+                            height: auto;
+                            max-width: 80%;
+                            vertical-align: middle;
+                            margin-left: 50%;
+                            transform: translateX(-50%);
+                        }
+                    }
+                }
+            }
+
+            .card-content {
+                display: flex;
+                flex: 1 1 auto;
+                flex-direction: column;
+                padding: 1rem;
+
+                .card-title {
+                    font-size: 22px;
+                    font-weight: 400;
+                    margin-bottom: 20px;
+                    text-transform: uppercase;
+                }
+
+                .card-text {
+                    flex: 1 1 auto;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    margin-bottom: 1.25rem;
+                    color: $text-light-c1;
+                }
+
+
+            }
+
+            .cards-footer {
+                background-color: $bg-light-c3;
+
+
+                a {
+                    width: 60%;
+                    background-color: $bg-btn-warning;
+                    border-radius: 0;
+                    transition: all .5s;
+                    padding: 15px 0;
+                    font-size: 18px;
+
+                    &:hover {
+                        background-color: $bg-btnhover-warning;
+                        color: $text-light-c0;
+                        font-weight: $fw-semibold;
+                    }
+                }
+
+                span {
+                    width: 40%;
+                    font-weight: $fw-semibold;
+
+                }
+            }
+        }
+    }
+
+
+
+}
