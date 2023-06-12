@@ -13,7 +13,12 @@ const initStateUserLogin = () => {
     return userLoginInit;
 }
 const initialState = {
-    userLogin:initStateUserLogin()
+    userLogin:initStateUserLogin(),
+    userProfile:{
+        
+    }
+
+    
 }
 
 const loginReducer = createSlice({
