@@ -1,0 +1,73 @@
+// ------- font-size -------
+$fs-1: 12px;
+$fs-2: 13px;
+$fs-3: 16px;
+$fs-4: 18px;
+$fs-5: 20px;
+$fs-6: 22px;
+$fs-7: 24px;
+$fz-sm: 1.4rem;
+$fz-md: 1.6rem;
+$fz-lg: 2rem;
+$fz-xl: 2.4rem;
+$fz-mxl: 3rem;
+$fz-xxl: 4rem;
+
+// ------- font-weight -------
+$fw-xlight: 200;
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// ------- line height -------
+$lh-sm: 2rem;
+$lh-md: 2.4rem;
+$lh-lg: 3rem;
+$lh-xl: 3.6rem;
+$lh-xxl: 4.8rem;
+// ------- color -------
+$text-primary-c0: #2a73dd;
+
+$text-dark-c0: #000;
+$text-dark-c1: #656774;
+$text-dark-c2: #140101;
+$text-dark-c3: #1e1d1d;
+
+$text-light-c0: #fff;
+$text-light-c1: #b7b4b4;
+$text-light-c2: #cbc9c9;
+
+$text-green-c0: #1ed90e;
+$text-red-c0: #fc0303;
+$bg-light-c3: #dedddc;
+
+// ------- background-color -------
+$bg-primary-c0: #2a73dd;
+
+$bg-dark-c0: #000;
+
+$bg-light-c0: #f5f5f5;
+$bg-light-c1: #dedddc;
+$bg-light-c2: #f8f8f8;
+$bg-light-c3: #cccccc;
+$bg-light-c4: #d9d9d9;
+
+$bg-orange-c0: #f8b653;
+$bg-orange-c1: #e1b067;
+
+$bg-gra-c0: linear-gradient(180deg, #6181f3 0%, #7c97f5 99.48%);
+$bg-gra-c1: linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d017ee 89.71%);
+$bg-gra-c2: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+//Button
+
+$bg-btn-warning: #e1b067;
+$bg-btnhover-warning: #9b5e03;
+//-------- reponsive---------
+$sm-width: 576px;
+$md-width: 768px;
+
+
+// -----img-----
+$detail-img-width : 42rem;
