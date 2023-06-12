@@ -11,20 +11,20 @@ const Navigation = () => {
               <NavLink to="">Home</NavLink>
             </li>
             <li>
-              <a href="#" className="menu-opacity">
-                Men
-              </a>
+              <NavLink to="/search?key=adidas" className="menu-opacity">
+                Adidas
+              </NavLink>
             </li>
             <li>
-              <a href="#" className="menu-opacity">
-                Woman
-              </a>
+              <NavLink to="/search?key=nike" className="menu-opacity">
+                Nike
+              </NavLink>
             </li>
             <li>
-              <a href="#">Kid</a>
+              <NavLink to="/search?key=van">Van</NavLink>
             </li>
             <li>
-              <a href="#">Sport</a>
+              <NavLink to="/search?key=converse">Converse</NavLink>
             </li>
           </ul>
         </div>
