@@ -171,7 +171,7 @@ const Register = () => {
                     <div className="form-group mt-5">
                       <button
                         type="submit"
-                        className="btn btn-primary"
+                        className="btn btn-success"
                         disabled={!registerForm.isValid}
                       >
                         Submit
