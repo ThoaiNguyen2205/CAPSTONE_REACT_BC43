@@ -11,16 +11,16 @@ export default function Footer() {
               <h3>GET HELP</h3>
               <ul>
                 <li>
-                  <NavLink to="">Home</NavLink>
+                  <NavLink to="/search?key=nike">Nike</NavLink>
                 </li>
                 <li>
-                  <a href="#">Nike</a>
+                  <NavLink to="/search?key=adidas">Adidas</NavLink>
                 </li>
                 <li>
-                  <a href="#">Adidas</a>
+                  <NavLink to="/search?key=van">Van</NavLink>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <NavLink to="/search?key=converse">Converse</NavLink>
                 </li>
               </ul>
             </div>
@@ -28,7 +28,7 @@ export default function Footer() {
               <h3>SUPPORT</h3>
               <ul>
                 <li>
-                  <a href="#">About</a>
+                  <NavLink to="">Home</NavLink>
                 </li>
                 <li>
                   <a href="#">Contact</a>

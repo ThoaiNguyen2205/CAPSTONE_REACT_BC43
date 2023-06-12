@@ -20,6 +20,8 @@ import Cart from "./pages/Cart/Cart";
 import Search from "./pages/Search/Search";
 import Profile from "./pages/Profile/Profile";
 import { createBrowserHistory } from "history";
+import ModalSearch from "./pages/Modals/ModalSearch";
+import HOC from "./HOC/HOC";
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

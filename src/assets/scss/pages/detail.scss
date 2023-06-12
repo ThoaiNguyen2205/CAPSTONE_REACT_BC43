@@ -159,53 +159,7 @@
                 }
 
 
-                .btn-increase {
-                    margin-bottom: 20px;
 
-                    .increase,
-                    .reduce {
-                        width: 50px;
-                        height: 50px;
-                        background: $bg-gra-c0;
-                        font-size: $fs-7;
-
-                        @media screen and (max-width:768px) {
-                            width: 40px;
-                            height: 40px;
-                            font-size: $fs-6;
-                            line-height: 20px;
-                        }
-
-                        @media screen and (max-width:576px) {
-                            width: 35px;
-                            height: 35px;
-                            font-size: $fs-5;
-                            line-height: 20px;
-                        }
-                    }
-
-                    input {
-                        font-size: 28px;
-                        text-align: center;
-                        vertical-align: middle;
-                        height: 50px;
-                        width: 100px;
-
-                        @media screen and (max-width:768px) {
-                            height: 40px;
-                            width: 60px;
-                            font-size: $fs-6;
-                        }
-
-                        @media screen and (max-width:576px) {
-                            height: 35px;
-                            width: 60px;
-                            font-size: $fs-5;
-                        }
-                    }
-
-
-                }
 
                 .btn-add {
                     color: $text-light-c0;

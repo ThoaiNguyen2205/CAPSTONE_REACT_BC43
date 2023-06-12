@@ -49,28 +49,28 @@ a {
 
             }
 
-            .header-right {
-                ul {
-                    li {
-                        display: inline;
-                        margin-left: 10px;
+            // .header-right {
+            //     ul {
+            //         li {
+            //             display: inline;
+            //             margin-left: 10px;
 
-                        a {
-                            @include text($fs-3, $fw-light, 0, $text-light-c0 );
-                            transition: all .5s;
+            //             a {
+            //                 @include text($fs-3, $fw-light, 0, $text-light-c0 );
+            //                 transition: all .5s;
 
-                            &:hover {
-                                color: #009688;
-                            }
+            //                 &:hover {
+            //                     color: #009688;
+            //                 }
 
-                            img {
-                                width: 31px;
-                                height: 31px;
-                            }
-                        }
-                    }
-                }
-            }
+            //                 img {
+            //                     width: 31px;
+            //                     height: 31px;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }
