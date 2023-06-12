@@ -98,7 +98,9 @@ const Detail = () => {
     dispatch(action);
   };
   const { arrProductCart } = useSelector((state) => state.productReducer);
-
+  let total = arrProductCart.reduce((tls, prod, index) => {
+    return (tls += prod.quantityCart);
+  }, 0);
   return (
     <div>
       <div className="detail-product">
@@ -125,39 +127,16 @@ const Detail = () => {
                 <button>{productDetail.size[5]}</button>
                 <button>{productDetail.size[6]}</button>
               </div>
-              <h1>$ {productDetail.price}</h1>
-              <p className="detail-quantity">
+              <h1 className="my-4">$ {productDetail.price}</h1>
+              <p className="detail-quantity mb-5">
                 Số lượng {productDetail.quantity}
               </p>
-              {/* <div className="btn-increase">
-                <button
-                  className="btn increase"
-                  onClick={() => {
-                    const action = changeQuantityDetail({
-                      id: productDetail.id,
-                      quantity: 1,
-                    });
-                    dispatch(action);
-                  }}
-                >
-                  +
-                </button>
-                <span className="mx-3 fs-3">1</span>
-                <button
-                  className="btn reduce"
-                  onClick={() => {
-                    const action = changeQuantityDetail({
-                      id: productDetail.id,
-                      quantity: -1,
-                    });
-                    dispatch(action);
-                  }}
-                >
-                  -
-                </button>
-              </div> */}
+
               <NavLink to="/cart" className="btn btn-add" onClick={addToCart}>
                 Add to cart
+              </NavLink>
+              <NavLink to="/cart" className="btn btn-add ms-4">
+                Your Cart ({total})
               </NavLink>
             </div>
           </div>
