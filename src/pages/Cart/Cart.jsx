@@ -19,7 +19,7 @@ const Cart = () => {
   };
   return (
     <div style={{ minHeight: "70vh" }} className="mt-5">
-      <h1 className="my-5 text-center"> My Cart</h1>
+      <h1 className="my-5 text-center"> Your Cart</h1>
       <table
         className="table text-center"
         style={{ backgroundColor: "rgb(237, 236, 236)" }}

@@ -40,14 +40,17 @@ export default function Header() {
             <div class="header-right">
               <ul>
                 <li>
-                  <NavLink to="/search">
+                  <NavLink
+                    to="/search"
+                    className="btn btn-outline-light text-dark"
+                  >
                     <i className="fa fa-search"></i> Search
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/cart" className="mx-2">
+                  <NavLink to="/cart" className="mx-2 btn btn-outline-darkt ">
                     <span className="fs-5 me-2">({total})</span>
-                    <img src="./img/image 8.png" alt="" />
+                    <i className="fa fa-cart-plus"></i>
                   </NavLink>
                 </li>
                 <li>
@@ -56,9 +59,15 @@ export default function Header() {
                 <li>
                   <NavLink to="/profile"><i class="fa-solid fa-user fs-5"></i></NavLink>
                   <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/login" className="btn btn-outline-dark ">
+                    {" "}
+                    <i className="fa fa-sign-in"></i> Login
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/register">Register</NavLink>
+                  <NavLink to="/register" className="btn btn-outline-dark ">
+                    <i className="fa fa-sign-in"></i> Register
+                  </NavLink>
                 </li>
               </ul>
             </div>
