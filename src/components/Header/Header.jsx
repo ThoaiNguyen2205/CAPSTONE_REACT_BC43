@@ -42,27 +42,18 @@ export default function Header() {
                 <li>
                   <NavLink
                     to="/search"
-                    className="btn btn-outline-light text-dark"
                   >
                     <i className="fa fa-search"></i> Search
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/cart" className="mx-2 btn btn-outline-darkt ">
+                  <NavLink to="/cart" >
                     <span className="fs-5 me-2">({total})</span>
                     <i className="fa fa-cart-plus"></i>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink >{renderLinkLogin()}</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/profile"><i class="fa-solid fa-user fs-5"></i></NavLink>
-                  <NavLink to="/login">Login</NavLink>
-                  <NavLink to="/login" className="btn btn-outline-dark ">
-                    {" "}
-                    <i className="fa fa-sign-in"></i> Login
-                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/register" className="btn btn-outline-dark ">

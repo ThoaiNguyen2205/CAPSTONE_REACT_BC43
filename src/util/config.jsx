@@ -12,6 +12,10 @@ export const http = axios.create({
     baseURL: DOMAIN,
     timeout: 30000 
 });
+export const httpup = axios.create({
+    baseURL: DOMAIN,
+    timeout: 30000 
+});
 
 export const {saveStorageJSON,getStorageJSON,clearStorage} = {
     saveStorageJSON: (name,data) => {
@@ -31,17 +35,17 @@ export const {saveStorageJSON,getStorageJSON,clearStorage} = {
 }
 
 
-// http.interceptors.request.use((config) => {
+httpup.interceptors.request.use((config) => {
     
     
-//     config.headers = {...config.headers}
-//     let token = JSON.parse(getStorageJSON(USER_LOGIN))?.accessToken;
-//     config.headers.Authorization = `Bearer ${token}`
+    config.headers = {...config.headers}
+    let token = JSON.parse(getStorageJSON(USER_LOGIN))?.accessToken;
+    config.headers.Authorization = `Bearer ${token}`
 
-//     return config;
-// }, (err) => {
-//     return Promise.reject(err);
-// })
+    return config;
+}, (err) => {
+    return Promise.reject(err);
+})
 http.interceptors.response.use((res)=>{
   return res
 },(err)=>{
