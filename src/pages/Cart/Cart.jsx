@@ -98,6 +98,9 @@ const Cart = () => {
           </h5>
         </tfoot>
       </table>
+      <div className="text-end me-5">
+        <button className="btn btn-success">Submit Order</button>
+      </div>
     </div>
   );
 };

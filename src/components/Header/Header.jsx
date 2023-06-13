@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { USER_LOGIN, clearStorage } from "../../util/config";
 
 export default function Header() {
   const { arrProductCart } = useSelector((state) => state.productReducer);
@@ -8,6 +9,58 @@ export default function Header() {
   let total = arrProductCart.reduce((tls, prod, index) => {
     return (tls += prod.quantityCart);
   }, 0);
+  const { userLogin } = useSelector((state) => state.loginReducer);
+  const renderLoginLink = () => {
+    if (userLogin.email !== "") {
+      return (
+        <ul>
+          <li>
+            <NavLink to="/search" className="btn btn-outline-secondary">
+              <i className="fa fa-search"></i> Search
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/cart" className="mx-2 btn btn-outline-secondary ">
+              <span className="fs-5 me-2">({total})</span>
+              <i className="fa fa-cart-plus"></i>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="mx-2 btn btn-outline-secondary"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                clearStorage(USER_LOGIN);
+                window.location.reload(); //F5
+              }}
+            >
+              <i className="fa fa-sign-in"></i> Logout
+            </NavLink>
+          </li>
+        </ul>
+      );
+    }
+    return (
+      <ul>
+        <li>
+          <NavLink to="/search" className="btn btn-outline-secondary">
+            <i className="fa fa-search"></i> Search
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/login" className="btn btn-outline-secondary ">
+            <i className="fa fa-sign-in"></i> Login
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/register" className="btn btn-outline-secondary ">
+            <i className="fa fa-sign-in"></i> Register
+          </NavLink>
+        </li>
+      </ul>
+    );
+  };
+
   return (
     <div>
       <header class="header">
@@ -18,35 +71,7 @@ export default function Header() {
                 <img src="./img/image 3.png" alt="" />
               </NavLink>
             </div>
-            <div class="header-right">
-              <ul>
-                <li>
-                  <NavLink
-                    to="/search"
-                    className="btn btn-outline-light text-dark"
-                  >
-                    <i className="fa fa-search"></i> Search
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/cart" className="mx-2 btn btn-outline-darkt ">
-                    <span className="fs-5 me-2">({total})</span>
-                    <i className="fa fa-cart-plus"></i>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/login" className="btn btn-outline-dark ">
-                    {" "}
-                    <i className="fa fa-sign-in"></i> Login
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/register" className="btn btn-outline-dark ">
-                    <i className="fa fa-sign-in"></i> Register
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
+            <div class="header-right">{renderLoginLink()}</div>
           </div>
         </div>
       </header>
