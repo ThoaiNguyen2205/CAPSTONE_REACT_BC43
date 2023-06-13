@@ -19,6 +19,7 @@ const initialState = {
     }
 
     
+    
 }
 
 const loginReducer = createSlice({
@@ -39,6 +40,7 @@ const loginReducer = createSlice({
 });
 
 export const {loginAction,getProfileAction} = loginReducer.actions
+
 
 export default loginReducer.reducer
 
@@ -79,3 +81,4 @@ export const getProfileActionApi=()=>{
     dispatch(action);
 }
 }
+

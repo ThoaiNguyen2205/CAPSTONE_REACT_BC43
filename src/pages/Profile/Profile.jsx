@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeProfileAction, getProfileAction, getProfileActionApi, updateProfileActionApi } from "../../redux/reducers/loginReducer";
+import { getProfileAction, getProfileActionApi,  } from "../../redux/reducers/loginReducer";
 import * as yup from "yup"
 import { http, httpup } from "../../util/config";
 
@@ -157,8 +157,7 @@ const Profile = () => {
 
 
   )
+            }
 
-
-};
 
 export default Profile;

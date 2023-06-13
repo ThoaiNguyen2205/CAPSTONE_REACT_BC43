@@ -55,6 +55,7 @@ export default function Header() {
                 </li>
                 <li>
                   <NavLink to="/profile"><i class="fa-solid fa-user fs-5"></i></NavLink>
+                  <NavLink to="/login">Login</NavLink>
                 </li>
                 <li>
                   <NavLink to="/register">Register</NavLink>
