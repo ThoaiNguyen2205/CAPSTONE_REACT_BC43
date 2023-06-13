@@ -53,7 +53,7 @@ const Register = () => {
       }
     },
   });
-
+  console.log('first',registerForm)
   return (
     <div style={{ height: "130vh" }}>
       <div className="ctrlqFormContentWrapper">

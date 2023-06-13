@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { history } from "../..";
+import { clearStorage, USER_LOGIN } from "../../util/config";
 
 export default function Header() {
   const { arrProductCart } = useSelector((state) => state.productReducer);
@@ -8,6 +10,23 @@ export default function Header() {
   let total = arrProductCart.reduce((tls, prod, index) => {
     return (tls += prod.quantityCart);
   }, 0);
+  const {userLogin} = useSelector(state=>state.loginReducer);
+  const renderLinkLogin =()=>{
+    if(userLogin.email !==''){
+
+      return <>
+      
+        <span style={{cursor:"pointer"}} onClick={()=>{
+          clearStorage(USER_LOGIN);
+          window.location.reload();
+          
+        }}>Logout</span>
+      
+      </>
+    }
+    return <NavLink to="/login">Login</NavLink>
+  }
+
   return (
     <div>
       <header class="header">
@@ -32,7 +51,10 @@ export default function Header() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLink >{renderLinkLogin()}</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/profile"><i class="fa-solid fa-user fs-5"></i></NavLink>
                 </li>
                 <li>
                   <NavLink to="/register">Register</NavLink>

@@ -29,11 +29,16 @@ const loginReducer = createSlice({
         const userLogin = action.payload;
         state.userLogin = userLogin;
 
-    }
+    },
+    getProfileAction:(state,action)=>{
+        const userProfile = action.payload;
+        state.userProfile = userProfile;
+    },
+   
   }
 });
 
-export const {loginAction} = loginReducer.actions
+export const {loginAction,getProfileAction} = loginReducer.actions
 
 export default loginReducer.reducer
 
@@ -58,4 +63,19 @@ export const loginActionApi = (userLogin) => {
         }
   
     }
+}
+
+export const getProfileActionApi=()=>{
+    return async (dispatch,getState)=>{
+    const accessToken = getState().loginReducer.userLogin.accessToken;
+    const res = await http.post(`/api/Users/getProfile`,{},{
+        headers:{
+            Authorization:`Bearer ${accessToken}`
+        }
+    });
+    console.log(res)
+
+    const action = getProfileAction(res.data.content);
+    dispatch(action);
+}
 }
