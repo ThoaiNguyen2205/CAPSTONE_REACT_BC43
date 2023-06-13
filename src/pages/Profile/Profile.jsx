@@ -44,7 +44,7 @@ const Profile = () => {
       try {
        
         const res = await httpup.post("/api/Users/updateProfile", values)
-        alert(res.data?.message);
+        alert("Update finished");
         }
       catch(err){
           console.log(err)
@@ -73,11 +73,6 @@ const Profile = () => {
             <p className="mb-0">Email </p>
             <input className='form-control' id='email' name="email" 
             value={userProfile.email} onInput={profileForm.handleChange} />
-              {profileForm.errors.email && (
-                        <p className="alert alert-danger mt-2">
-                          {profileForm.errors.email}
-                        </p>
-                      )}
           </div>
           <div className="form-group">
             <p className="mb-0 mt-4">Phone</p>

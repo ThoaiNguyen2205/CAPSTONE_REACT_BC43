@@ -31,6 +31,7 @@ export const {saveStorageJSON,getStorageJSON,clearStorage} = {
     },
     clearStorage: (name) => {
         localStorage.removeItem(name)
+        history.push('/')
     }
 }
 
@@ -39,7 +40,7 @@ httpup.interceptors.request.use((config) => {
     
     
     config.headers = {...config.headers}
-    let token = JSON.parse(getStorageJSON(USER_LOGIN))?.accessToken;
+    let token = getStorageJSON(USER_LOGIN)?.accessToken;
     config.headers.Authorization = `Bearer ${token}`
 
     return config;

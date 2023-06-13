@@ -37,24 +37,6 @@ a {
   height: 32px;
   width: 116px;
 }
-.header .container-fluid .header-content .header-right ul li {
-  display: inline;
-  margin-left: 10px;
-}
-.header .container-fluid .header-content .header-right ul li a {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 0;
-  color: #fff;
-  transition: all 0.5s;
-}
-.header .container-fluid .header-content .header-right ul li a:hover {
-  color: #009688;
-}
-.header .container-fluid .header-content .header-right ul li a img {
-  width: 31px;
-  height: 31px;
-}
 
 /* MENU */
 .menu-shoes {
