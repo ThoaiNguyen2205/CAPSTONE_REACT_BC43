@@ -10,6 +10,19 @@ export const http = axios.create({
   baseURL: DOMAIN,
   timeout: 30000,
 });
+export const httpDetail = axios.create({
+  baseURL: DOMAIN,
+  timeout: 30000,
+});
+httpDetail.interceptors.request.use(
+  (config) => {
+    config = { ...config };
+    return config;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
+);
 
 export const { saveStorageJSON, getStorageJSON, clearStorage } = {
   saveStorageJSON: (name, data) => {
@@ -38,30 +51,30 @@ export const { saveStorageJSON, getStorageJSON, clearStorage } = {
 //     return Promise.reject(err);
 // })
 
-export const httpProduct = axios.create({
-  baseURL: DOMAIN,
-  timeout: 30000,
-});
-export const { getStoreJson, setStoreJson, getStore, setStore } = {
-  getStoreJson: (name) => {
-    if (localStorage.getItem(name)) {
-      const strResult = localStorage.getItem(name);
-      return JSON.parse(strResult);
-    }
-    return undefined;
-  },
-  setStoreJson: (name, data) => {
-    const strJson = JSON.stringify(data);
-    localStorage.setItem(name, strJson);
-  },
-  getStore: (name) => {
-    return localStorage.getItem(name);
-  },
-  setStore: (name, data) => {
-    localStorage.setItem(name, data);
-  },
-};
-httpProduct.interceptors.request.use(
+// export const httpProduct = axios.create({
+//   baseURL: DOMAIN,
+//   timeout: 30000,
+// });
+// export const { getStoreJson, setStoreJson, getStore, setStore } = {
+//   getStoreJson: (name) => {
+//     if (localStorage.getItem(name)) {
+//       const strResult = localStorage.getItem(name);
+//       return JSON.parse(strResult);
+//     }
+//     return undefined;
+//   },
+//   setStoreJson: (name, data) => {
+//     const strJson = JSON.stringify(data);
+//     localStorage.setItem(name, strJson);
+//   },
+//   getStore: (name) => {
+//     return localStorage.getItem(name);
+//   },
+//   setStore: (name, data) => {
+//     localStorage.setItem(name, data);
+//   },
+// };
+http.interceptors.request.use(
   (config) => {
     config = { ...config };
     return config;
@@ -71,7 +84,7 @@ httpProduct.interceptors.request.use(
   }
 );
 //Cấu hình cho response (kết quả trả về từ api)
-httpProduct.interceptors.response.use(
+http.interceptors.response.use(
   (res) => {
     return res;
   },

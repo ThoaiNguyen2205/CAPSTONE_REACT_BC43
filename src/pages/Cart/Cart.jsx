@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeQuantityCart,
   changeQuantityDetail,
   delProdCartAction,
 } from "../../redux/reducers/productReducer";
+import { getProfileActionApi } from "../../redux/reducers/loginReducer";
 
 const Cart = () => {
   const { arrProductCart } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
+  const getProfileApi = () => {
+    //Gọi api getProfile sử dụng redux async action
+    const action = getProfileActionApi();
+    dispatch(action);
+  };
 
+  useEffect(() => {
+    getProfileApi();
+  }, []);
   const totalCart = () => {
     let total = 0;
     for (let itemCart of arrProductCart) {

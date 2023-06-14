@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { httpProduct } from "../../util/config";
+import { http } from "../../util/config";
 
 const initialState = {
   arrProduct: [],
@@ -85,7 +85,7 @@ export default productReducer.reducer;
 
 export const getAllProductApi = () => {
   return async (dispatch) => {
-    const res = await httpProduct.get("/api/Product");
+    const res = await http.get("/api/Product");
     const action = getAllProductAction(res.data.content);
     dispatch(action);
   };

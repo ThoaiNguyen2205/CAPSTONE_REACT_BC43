@@ -30,10 +30,14 @@ const loginReducer = createSlice({
       const userLogin = action.payload;
       state.userLogin = userLogin;
     },
+    getProfileAction: (state, action) => {
+      const userProfile = action.payload;
+      state.userProfile = userProfile;
+    },
   },
 });
 
-export const { loginAction } = loginReducer.actions;
+export const { loginAction, getProfileAction } = loginReducer.actions;
 
 export default loginReducer.reducer;
 
@@ -48,10 +52,38 @@ export const loginActionApi = (userLogin) => {
       dispatch(action);
 
       saveStorageJSON(USER_LOGIN, res.data.content);
-      history.push("/");
+      history.push("/profile");
     } catch (err) {
       alert(err.response?.data.message);
       history.push("/login");
     }
+  };
+};
+//Cấu hình dùng chung cho tất cả request (yêu cầu gửi lên api)
+http.interceptors.request.use(
+  (config) => {
+    //headers: (dev định nghĩa)
+    //data (body): (lấy từ các input hoặc tham số từ phía client)
+    config.headers = { ...config.headers };
+    let token = getStorageJSON(USER_LOGIN)?.accessToken;
+    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.tokenCybersoft = `CybersoftDemo`;
+
+    return config;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
+);
+export const getProfileActionApi = () => {
+  return async (dispatch, getState) => {
+    // console.log(getState)
+    const accessToken = getState().loginReducer.userLogin.accessToken;
+
+    //Gọi api getprofile
+    const res = await http.post(`/api/Users/getProfile`);
+
+    const action = getProfileAction(res.data.content);
+    dispatch(action);
   };
 };

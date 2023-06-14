@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { history } from "../../index";
 import {
   addToCartAction,
   changeQuantityCart,
@@ -9,7 +10,8 @@ import {
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import "../../assets/scss/pages/detail.scss";
-import { httpProduct, setStoreJson } from "../../util/config";
+import { http, httpDetail, httpProduct, setStoreJson } from "../../util/config";
+import { getProfileActionApi } from "../../redux/reducers/loginReducer";
 const Detail = () => {
   const [productDetail, setProductDetail] = useState({
     id: 2,
@@ -86,9 +88,18 @@ const Detail = () => {
     getProductDetailApi(params.id);
     console.log(params);
   }, [params.id]);
+  // const getProfileApi = () => {
+  //   //Gọi api getProfile sử dụng redux async action
+  //   const action = getProfileActionApi();
+  //   dispatch(action);
+  // };
+
+  // useEffect(() => {
+  //   getProfileApi();
+  // }, []);
 
   const getProductDetailApi = async (id) => {
-    const result = await httpProduct.get(`/api/product/getbyid?id=${id}`);
+    const result = await httpDetail.get(`/api/product/getbyid?id=${id}`);
 
     //Đưa dữ liệu lấy tự api về vào state
     setProductDetail(result.data.content);
@@ -98,9 +109,18 @@ const Detail = () => {
     dispatch(action);
   };
   const { arrProductCart } = useSelector((state) => state.productReducer);
+
   let total = arrProductCart.reduce((tls, prod, index) => {
     return (tls += prod.quantityCart);
   }, 0);
+  // const { userLogin } = useSelector((state) => state.loginReducer);
+  // console.log(userLogin);
+  // const addToCartLink = () => {
+  //   if (userLogin.email !== "") {
+  //     return addToCart();
+  //   }
+  //   return alert("Bạn phải đăng nhập để vào trang này !");
+  // };
   return (
     <div>
       <div className="detail-product">

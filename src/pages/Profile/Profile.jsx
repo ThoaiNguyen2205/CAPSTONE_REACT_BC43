@@ -1,7 +1,29 @@
-import React from "react";
+//rafce
 
-const Profile = () => {
-  return <div>Profile</div>;
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProfileActionApi } from "../../redux/reducers/loginReducer";
+
+const Profile = (props) => {
+  const { userProfile } = useSelector((state) => state.loginReducer);
+
+  const dispatch = useDispatch();
+
+  const getProfileApi = () => {
+    //Gọi api getProfile sử dụng redux async action
+    const action = getProfileActionApi();
+    dispatch(action);
+  };
+
+  useEffect(() => {
+    getProfileApi();
+  }, []);
+
+  return (
+    <div className="container">
+      <h3>Hello ! {userProfile.email}</h3>
+    </div>
+  );
 };
 
 export default Profile;
