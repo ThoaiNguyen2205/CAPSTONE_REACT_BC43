@@ -57,18 +57,18 @@ httpup.interceptors.request.use(
     return Promise.reject(err);
   }
 );
-http.interceptors.response.use(
-  (res) => {
-    return res;
-  },
-  (err) => {
-    if (err.response?.status === 401) {
-      alert("login required");
-      history.push("/login");
-    }
-    return Promise.reject(err);
-  }
-);
+// http.interceptors.response.use(
+//   (res) => {
+//     return res;
+//   },
+//   (err) => {
+//     if (err.response?.status === 401) {
+//       alert("login required");
+//       history.push("/login");
+//     }
+//     return Promise.reject(err);
+//   }
+// );
 
 // export const httpProduct = axios.create({
 //   baseURL: DOMAIN,

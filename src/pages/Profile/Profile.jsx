@@ -62,7 +62,7 @@ const Profile = () => {
 
   return (
     <form className="container" onSubmit={profileForm.handleSubmit}>
-      <h3>Profile</h3>
+      <h3>{userProfile.name}</h3>
       <hr />
       <div className="row">
         <div className="col-2">
@@ -139,14 +139,16 @@ const Profile = () => {
               <div className="form-group mt-2">
                 <p>Gender</p>
                 <input
-                  className="form-check-input"
+                  className="form-check-input "
                   id="gender1"
                   name="gender"
                   type="radio"
                   value={true}
                   onInput={profileForm.handleChange}
                 />
-                <label for="gender1">Male</label>
+                <label for="gender1" className="me-3">
+                  Male
+                </label>
                 <input
                   className="form-check-input"
                   id="gender2"
