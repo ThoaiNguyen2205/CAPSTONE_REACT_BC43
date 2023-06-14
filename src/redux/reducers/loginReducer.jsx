@@ -18,18 +18,26 @@ const initStateUserLogin = () => {
   return userLoginInit;
 };
 const initialState = {
-  userLogin: initStateUserLogin(),
-  userProfile: {},
-};
+    userLogin:initStateUserLogin(),
+    userProfile:{
+        
+    }
+
+    
+    
+}
+
 
 const loginReducer = createSlice({
   name: "loginReducer",
   initialState,
   reducers: {
-    loginAction: (state, action) => {
-      const userLogin = action.payload;
-      state.userLogin = userLogin;
+    loginAction:(state,action)=>{
+        const userLogin = action.payload;
+        state.userLogin = userLogin;
+
     },
+<<<<<<< HEAD
     getProfileAction: (state, action) => {
       const userProfile = action.payload;
       state.userProfile = userProfile;
@@ -38,6 +46,20 @@ const loginReducer = createSlice({
 });
 
 export const { loginAction, getProfileAction } = loginReducer.actions;
+=======
+    getProfileAction:(state,action)=>{
+        const userProfile = action.payload;
+        state.userProfile = userProfile;
+    },
+   
+  }
+});
+
+export const {loginAction,getProfileAction} = loginReducer.actions
+
+
+
+>>>>>>> origin/devPhuc
 
 export default loginReducer.reducer;
 
@@ -57,6 +79,7 @@ export const loginActionApi = (userLogin) => {
       alert(err.response?.data.message);
       history.push("/login");
     }
+<<<<<<< HEAD
   };
 };
 //Cấu hình dùng chung cho tất cả request (yêu cầu gửi lên api)
@@ -87,3 +110,22 @@ export const getProfileActionApi = () => {
     dispatch(action);
   };
 };
+=======
+}
+}
+export const getProfileActionApi=()=>{
+    return async (dispatch,getState)=>{
+    const accessToken = getState().loginReducer.userLogin.accessToken;
+    const res = await http.post(`/api/Users/getProfile`,{},{
+        headers:{
+            Authorization:`Bearer ${accessToken}`
+        }
+    });
+    console.log(res)
+
+    const action = getProfileAction(res.data.content);
+    dispatch(action);
+}
+}
+
+>>>>>>> origin/devPhuc

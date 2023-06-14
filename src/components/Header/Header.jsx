@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { history } from "../..";
 import { USER_LOGIN, clearStorage } from "../../util/config";
 
 export default function Header() {
@@ -9,7 +10,22 @@ export default function Header() {
   let total = arrProductCart.reduce((tls, prod, index) => {
     return (tls += prod.quantityCart);
   }, 0);
-  const { userLogin } = useSelector((state) => state.loginReducer);
+  const {userLogin} = useSelector(state=>state.loginReducer);
+  const renderLinkLogin =()=>{
+    if(userLogin.email !==''){
+
+      return <>
+      
+        <span style={{cursor:"pointer"}} onClick={()=>{
+          clearStorage(USER_LOGIN);
+          window.location.reload();
+          
+        }}>Logout</span>
+      
+      </>
+    }
+    return <NavLink to="/login">Login</NavLink>
+  }
   const renderLoginLink = () => {
     if (userLogin.email !== "") {
       return (
@@ -71,6 +87,7 @@ export default function Header() {
                 <img src="./img/image 3.png" alt="" />
               </NavLink>
             </div>
+            
             <div class="header-right">{renderLoginLink()}</div>
           </div>
         </div>

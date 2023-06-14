@@ -1,12 +1,15 @@
 import axios from "axios";
 import { history } from "../index";
-
 //cấu hình hệ thống
 export const DOMAIN = "https://shop.cyberlearn.vn";
 export const USER_LOGIN = "userLogin";
 export const TOKEN = "accessToken";
 
 export const http = axios.create({
+  baseURL: DOMAIN,
+  timeout: 30000,
+});
+export const httpup = axios.create({
   baseURL: DOMAIN,
   timeout: 30000,
 });
@@ -38,18 +41,34 @@ export const { saveStorageJSON, getStorageJSON, clearStorage } = {
   },
   clearStorage: (name) => {
     localStorage.removeItem(name);
+    history.push("/");
   },
 };
-// http.interceptors.request.use((config) => {
 
-//     config.headers = {...config.headers}
-//     let token = JSON.parse(getStorageJSON(USER_LOGIN))?.accessToken;
-//     config.headers.Authorization = `Bearer ${token}`
+httpup.interceptors.request.use(
+  (config) => {
+    config.headers = { ...config.headers };
+    let token = getStorageJSON(USER_LOGIN)?.accessToken;
+    config.headers.Authorization = `Bearer ${token}`;
 
-//     return config;
-// }, (err) => {
-//     return Promise.reject(err);
-// })
+    return config;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
+);
+http.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  (err) => {
+    if (err.response?.status === 401) {
+      alert("login required");
+      history.push("/login");
+    }
+    return Promise.reject(err);
+  }
+);
 
 // export const httpProduct = axios.create({
 //   baseURL: DOMAIN,
