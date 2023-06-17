@@ -1,31 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { history } from "../..";
+
 import { USER_LOGIN, clearStorage } from "../../util/config";
 
 export default function Header() {
   const { arrProductCart } = useSelector((state) => state.productReducer);
-  console.log(arrProductCart);
   let total = arrProductCart.reduce((tls, prod, index) => {
     return (tls += prod.quantityCart);
   }, 0);
-  const {userLogin} = useSelector(state=>state.loginReducer);
-  const renderLinkLogin =()=>{
-    if(userLogin.email !==''){
 
-      return <>
-      
-        <span style={{cursor:"pointer"}} onClick={()=>{
-          clearStorage(USER_LOGIN);
-          window.location.reload();
-          
-        }}>Logout</span>
-      
-      </>
-    }
-    return <NavLink to="/login">Login</NavLink>
-  }
+  const { userLogin } = useSelector((state) => state.loginReducer);
+
   const renderLoginLink = () => {
     if (userLogin.email !== "") {
       return (
@@ -36,21 +22,30 @@ export default function Header() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/cart" className="mx-2 btn btn-outline-secondary ">
+            <NavLink to="/cart" className=" btn btn-outline-secondary ">
               <span className="fs-5 me-2">({total})</span>
               <i className="fa fa-cart-plus"></i>
             </NavLink>
           </li>
+
           <li>
             <NavLink
-              className="mx-2 btn btn-outline-secondary"
-              style={{ cursor: "pointer" }}
+              className=" btn btn-outline-secondary"
               onClick={() => {
                 clearStorage(USER_LOGIN);
                 window.location.reload(); //F5
               }}
             >
               <i className="fa fa-sign-in"></i> Logout
+            </NavLink>
+          </li>
+          <li className="">
+            <NavLink
+              to="/profile"
+              className="btn btn-outline-success overflow-hidden rounded-circle"
+              style={{ width: 30, height: 30, lineHeight: "30px", padding: 0 }}
+            >
+              {userLogin.email.substr(0, 1)}
             </NavLink>
           </li>
         </ul>
@@ -87,7 +82,7 @@ export default function Header() {
                 <img src="./img/image 3.png" alt="" />
               </NavLink>
             </div>
-            
+
             <div class="header-right">{renderLoginLink()}</div>
           </div>
         </div>

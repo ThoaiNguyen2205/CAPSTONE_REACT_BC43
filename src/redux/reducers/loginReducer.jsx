@@ -3,6 +3,7 @@ import { history } from "../..";
 import {
   getStorageJSON,
   http,
+  httpup,
   saveStorageJSON,
   USER_LOGIN,
 } from "../../util/config";
@@ -10,6 +11,7 @@ const initStateUserLogin = () => {
   let userLoginInit = {
     email: "",
     accessToken: "",
+    name: "",
   };
 
   if (getStorageJSON(USER_LOGIN)) {
@@ -18,37 +20,25 @@ const initStateUserLogin = () => {
   return userLoginInit;
 };
 const initialState = {
-    userLogin:initStateUserLogin(),
-    userProfile:{
-        
-    }
-
-    
-    
-}
-
-
+  userLogin: initStateUserLogin(),
+  userProfile: {},
+};
 const loginReducer = createSlice({
   name: "loginReducer",
   initialState,
   reducers: {
-    loginAction:(state,action)=>{
-        const userLogin = action.payload;
-        state.userLogin = userLogin;
-
+    loginAction: (state, action) => {
+      const userLogin = { ...action.payload };
+      state.userLogin = userLogin;
     },
-    getProfileAction:(state,action)=>{
-        const userProfile = action.payload;
-        state.userProfile = userProfile;
+    getProfileAction: (state, action) => {
+      const userProfile = action.payload;
+      state.userProfile = userProfile;
     },
-   
-  }
+  },
 });
 
-export const {loginAction,getProfileAction} = loginReducer.actions
-
-
-
+export const { loginAction, getProfileAction } = loginReducer.actions;
 
 export default loginReducer.reducer;
 
@@ -63,25 +53,18 @@ export const loginActionApi = (userLogin) => {
       dispatch(action);
 
       saveStorageJSON(USER_LOGIN, res.data.content);
-      history.push("/");
+      history.push("/profile");
     } catch (err) {
       alert(err.response?.data.message);
       history.push("/login");
     }
-}
-}
-export const getProfileActionApi=()=>{
-    return async (dispatch,getState)=>{
-    const accessToken = getState().loginReducer.userLogin.accessToken;
-    const res = await http.post(`/api/Users/getProfile`,{},{
-        headers:{
-            Authorization:`Bearer ${accessToken}`
-        }
-    });
-    console.log(res)
+  };
+};
 
+export const getProfileActionApi = () => {
+  return async (dispatch) => {
+    const res = await http.post(`/api/Users/getProfile`);
     const action = getProfileAction(res.data.content);
     dispatch(action);
-}
-}
-
+  };
+};

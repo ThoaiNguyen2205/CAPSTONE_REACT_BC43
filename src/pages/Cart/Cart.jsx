@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getProfileActionApi } from "../../redux/reducers/loginReducer";
 import {
   changeQuantityCart,
-  changeQuantityDetail,
   delProdCartAction,
 } from "../../redux/reducers/productReducer";
-import { httpup } from "../../util/config";
+import { http } from "../../util/config";
+
+
+
 
 const Cart = () => {
-  const { arrProductCart } = useSelector((state) => state.productReducer);
- 
+  const { arrProductCart, productOrder } = useSelector(
+    (state) => state.productReducer
+  );
+  const { userProfile } = useSelector((state) => state.loginReducer);
+  console.log("orde", productOrder);
   const dispatch = useDispatch();
- 
+  const getProfileApi = () => {
+    //Gọi api getProfile sử dụng redux async action
+    const action = getProfileActionApi();
+    dispatch(action);
+  };
 
+  useEffect(() => {
+    getProfileApi();
+  }, []);
   const totalCart = () => {
     let total = 0;
     for (let itemCart of arrProductCart) {
@@ -25,6 +39,25 @@ const Cart = () => {
 
 
 
+  const navigate = useNavigate();
+  const onSubmit = async () => {
+    console.log();
+    try {
+      const data = {
+        email: userProfile.email,
+        orderDetail: arrProductCart.map((prod) => ({
+          productId: prod.id,
+          quantity: prod.quantityCart,
+        })),
+      };
+      const res = await http.post("/api/Users/order", data);
+      alert(res.data?.message);
+      console.log("res", res);
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+  };
+ 
   return (
     <div style={{ minHeight: "70vh" }} className="mt-5">
       <h1 className="my-5 text-center"> Your Cart</h1>
@@ -107,7 +140,9 @@ const Cart = () => {
         </tfoot>
       </table>
       <div className="text-end me-5">
-        <button className="btn btn-success" >Submit Order</button>
+        <button className="btn btn-success" onClick={onSubmit}>
+          Submit Order
+        </button>
       </div>
     </div>
   );
