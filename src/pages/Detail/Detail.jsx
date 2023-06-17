@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../../index";
-import {
-  addToCartAction,
-  changeQuantityCart,
-  changeQuantityDetail,
-  getAllProductApi,
-} from "../../redux/reducers/productReducer";
+import { addToCartAction } from "../../redux/reducers/productReducer";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import "../../assets/scss/pages/detail.scss";
-import { http, httpDetail, httpProduct, setStoreJson } from "../../util/config";
-import { getProfileActionApi } from "../../redux/reducers/loginReducer";
+import { http, httpDetail } from "../../util/config";
+
 const Detail = () => {
   const [productDetail, setProductDetail] = useState({
     id: 2,
@@ -113,14 +108,7 @@ const Detail = () => {
   let total = arrProductCart.reduce((tls, prod, index) => {
     return (tls += prod.quantityCart);
   }, 0);
-  // const { userLogin } = useSelector((state) => state.loginReducer);
-  // console.log(userLogin);
-  // const addToCartLink = () => {
-  //   if (userLogin.email !== "") {
-  //     return addToCart();
-  //   }
-  //   return alert("Bạn phải đăng nhập để vào trang này !");
-  // };
+
   return (
     <div>
       <div className="detail-product">

@@ -1,0 +1,36 @@
+.container {
+    h3 {}
+
+    form {}
+
+    h4 {}
+
+    .sort {
+        h4 {}
+
+    }
+
+    .row {
+        .col-3 {
+            .card {
+                img {
+                    vertical-align: middle;
+                    margin-left: 50%;
+                    transform: translateX(-50%)
+                }
+
+                .card-body {
+                    h3 {}
+
+                    p {}
+
+                }
+
+                .card-footer {
+                    a {}
+                }
+
+            }
+        }
+    }
+}

@@ -4,6 +4,15 @@ import { http } from "../../util/config";
 const initialState = {
   arrProduct: [],
   arrProductCart: [],
+  productOrder: {
+    orderDetail: [
+      {
+        productId: "",
+        quantity: 0,
+      },
+    ],
+    email: "",
+  },
 };
 
 const productReducer = createSlice({
@@ -34,21 +43,7 @@ const productReducer = createSlice({
         state.arrProductCart.splice(indexDel, 1);
       }
     },
-    // changeQuantityDetail: (state, action) => {
-    //   let { id, quantity } = action.payload;
-    //   let prodCart = state.arrProductCart.find((item) => item.id === id);
-    //   if (prodCart) {
-    //     prodCart.quantityCart += quantity;
-    //     if (prodCart.quantityCart < 1) {
-    //       if (window.confirm("Bạn có muốn xoá sản phẩm này không ?")) {
-    //         delProdCartAction(prodCart.id);
-    //         return;
-    //       } else {
 
-    //       }
-    //     }
-    //   }
-    // },
     changeQuantityCart: (state, action) => {
       let { id, quantity } = action.payload;
       let prodCart = state.arrProductCart.find((item) => item.id === id);

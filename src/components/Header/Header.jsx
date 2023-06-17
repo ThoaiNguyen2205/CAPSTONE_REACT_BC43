@@ -11,7 +11,7 @@ export default function Header() {
     return (tls += prod.quantityCart);
   }, 0);
 
-  const { userLogin, userProfile } = useSelector((state) => state.loginReducer);
+  const { userLogin } = useSelector((state) => state.loginReducer);
 
   const renderLoginLink = () => {
     if (userLogin.email !== "") {
@@ -23,7 +23,7 @@ export default function Header() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/cart" className="mx-2 btn btn-outline-secondary ">
+            <NavLink to="/cart" className=" btn btn-outline-secondary ">
               <span className="fs-5 me-2">({total})</span>
               <i className="fa fa-cart-plus"></i>
             </NavLink>
@@ -31,7 +31,7 @@ export default function Header() {
 
           <li>
             <NavLink
-              className="mx-2 btn btn-outline-secondary"
+              className=" btn btn-outline-secondary"
               onClick={() => {
                 clearStorage(USER_LOGIN);
                 window.location.reload(); //F5

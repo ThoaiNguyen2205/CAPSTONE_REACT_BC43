@@ -21,10 +21,10 @@ httpDetail.interceptors.request.use(
   (config) => {
     config = { ...config };
     return config;
-  },
-  (err) => {
-    return Promise.reject(err);
   }
+  // (err) => {
+  //   return Promise.reject(err);
+  // }
 );
 
 export const { saveStorageJSON, getStorageJSON, clearStorage } = {
@@ -45,63 +45,19 @@ export const { saveStorageJSON, getStorageJSON, clearStorage } = {
   },
 };
 
-httpup.interceptors.request.use(
+http.interceptors.request.use(
   (config) => {
     config.headers = { ...config.headers };
     let token = getStorageJSON(USER_LOGIN)?.accessToken;
     config.headers.Authorization = `Bearer ${token}`;
-
+    config.headers.tokenCybersoft = `CybersoftDemo`;
     return config;
-  },
-  (err) => {
-    return Promise.reject(err);
   }
+  // (err) => {
+  //   return Promise.reject(err);
+  // }
 );
-// http.interceptors.response.use(
-//   (res) => {
-//     return res;
-//   },
-//   (err) => {
-//     if (err.response?.status === 401) {
-//       alert("login required");
-//       history.push("/login");
-//     }
-//     return Promise.reject(err);
-//   }
-// );
 
-// export const httpProduct = axios.create({
-//   baseURL: DOMAIN,
-//   timeout: 30000,
-// });
-// export const { getStoreJson, setStoreJson, getStore, setStore } = {
-//   getStoreJson: (name) => {
-//     if (localStorage.getItem(name)) {
-//       const strResult = localStorage.getItem(name);
-//       return JSON.parse(strResult);
-//     }
-//     return undefined;
-//   },
-//   setStoreJson: (name, data) => {
-//     const strJson = JSON.stringify(data);
-//     localStorage.setItem(name, strJson);
-//   },
-//   getStore: (name) => {
-//     return localStorage.getItem(name);
-//   },
-//   setStore: (name, data) => {
-//     localStorage.setItem(name, data);
-//   },
-// };
-http.interceptors.request.use(
-  (config) => {
-    config = { ...config };
-    return config;
-  },
-  (err) => {
-    return Promise.reject(err);
-  }
-);
 //Cấu hình cho response (kết quả trả về từ api)
 http.interceptors.response.use(
   (res) => {
@@ -109,11 +65,11 @@ http.interceptors.response.use(
   },
   (err) => {
     //Xử lý lỗi cho api bị lỗi theo status code
-    console.log(err);
+    // console.log(err);
     if (err.response?.status === 401) {
       alert("Đăng nhập để vào trang này !");
       history.push("/login");
     }
-    return Promise.reject(err);
+    return;
   }
 );

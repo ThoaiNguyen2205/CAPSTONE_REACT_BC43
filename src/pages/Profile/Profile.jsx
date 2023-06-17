@@ -39,10 +39,8 @@ const Profile = () => {
       name: yup.string().required("name is required"),
       phone: yup
         .string()
-        .required("phone is required")
-        .matches(/\d$/, "phone is numbers")
-        .min(10)
-        .max(12),
+        .required("Name cannot be blank !")
+        .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, "Phone is a number !"),
     }),
     onSubmit: async (values) => {
       console.log("ketqua", values);

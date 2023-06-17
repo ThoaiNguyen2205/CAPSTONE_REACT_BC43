@@ -2,13 +2,18 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeQuantityCart,
-  changeQuantityDetail,
   delProdCartAction,
 } from "../../redux/reducers/productReducer";
 import { getProfileActionApi } from "../../redux/reducers/loginReducer";
+import { http } from "../../util/config";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { arrProductCart } = useSelector((state) => state.productReducer);
+  const { arrProductCart, productOrder } = useSelector(
+    (state) => state.productReducer
+  );
+  const { userProfile } = useSelector((state) => state.loginReducer);
+  console.log("orde", productOrder);
   const dispatch = useDispatch();
   const getProfileApi = () => {
     //Gọi api getProfile sử dụng redux async action
@@ -19,12 +24,31 @@ const Cart = () => {
   useEffect(() => {
     getProfileApi();
   }, []);
+  console.log(userProfile.email);
   const totalCart = () => {
     let total = 0;
     for (let itemCart of arrProductCart) {
       total += itemCart.quantityCart * itemCart.price;
     }
     return total;
+  };
+  const navigate = useNavigate();
+  const onSubmit = async () => {
+    console.log();
+    try {
+      const data = {
+        email: userProfile.email,
+        orderDetail: arrProductCart.map((prod) => ({
+          productId: prod.id,
+          quantity: prod.quantityCart,
+        })),
+      };
+      const res = await http.post("/api/Users/order", data);
+      alert(res.data?.message);
+      console.log("res", res);
+    } catch (err) {
+      alert(err.response.data.message);
+    }
   };
   return (
     <div style={{ minHeight: "70vh" }} className="mt-5">
@@ -108,7 +132,9 @@ const Cart = () => {
         </tfoot>
       </table>
       <div className="text-end me-5">
-        <button className="btn btn-success">Submit Order</button>
+        <button className="btn btn-success" onClick={onSubmit}>
+          Submit Order
+        </button>
       </div>
     </div>
   );
