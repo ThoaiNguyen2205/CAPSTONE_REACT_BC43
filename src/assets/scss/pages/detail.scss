@@ -128,9 +128,9 @@
                         }
 
                         @media screen and (max-width:576px) {
-                            width: 33px;
-                            height: 30px;
-                            line-height: 30px;
+                            width: 25px;
+                            height: 25px;
+                            line-height: 22px;
                             font-size: $fs-2;
                         }
                     }
@@ -138,15 +138,18 @@
 
                 h1 {
                     @include text(30px, $fw-semibold, 36.31px, #FC0303);
-                    margin-top: 17px;
+
+                    margin: 24px 0;
 
                     @media screen and (max-width:768px) {
                         font-size: $fs-7;
+                        margin: 15px 0;
+
                     }
 
                     @media screen and (max-width:576px) {
                         font-size: $fs-5;
-                        margin: 0;
+                        margin: 10px 0;
                     }
                 }
 
@@ -171,13 +174,17 @@
 
                     @media screen and (max-width:576px) {
                         height: 45px;
-                        width: 140px;
+                        width: 110px;
                     }
 
                     &:hover {
                         background-size: 300%;
                         background-position: left center;
                     }
+                }
+
+                .btn {
+                    line-height: 16px;
                 }
 
             }
@@ -199,7 +206,7 @@
             padding: 0;
 
             @media screen and (max-width:576px) {
-                width: 80%;
+                width: 90%;
                 margin: 0 auto;
             }
 
@@ -208,11 +215,11 @@
                 padding: 1rem;
 
                 @media(min-width: 40rem) {
-                    width: 50%;
+                    width: calc(100%/3);
                 }
 
-                @media(min-width: 56rem) {
-                    width: calc(100%/3);
+                @media screen and(max-width:576px) {
+                    width: 50%;
                 }
 
                 .card {

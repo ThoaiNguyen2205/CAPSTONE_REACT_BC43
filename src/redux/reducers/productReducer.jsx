@@ -80,7 +80,7 @@ export default productReducer.reducer;
 
 export const getAllProductApi = () => {
   return async (dispatch) => {
-    const res = await httpDetail.get("/api/Product");
+    const res = await http.get("/api/Product");
     const action = getAllProductAction(res.data.content);
     dispatch(action);
   };

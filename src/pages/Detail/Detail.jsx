@@ -135,8 +135,8 @@ const Detail = () => {
                 <button>{productDetail.size[5]}</button>
                 <button>{productDetail.size[6]}</button>
               </div>
-              <h1 className="my-4">$ {productDetail.price}</h1>
-              <p className="detail-quantity mb-5">
+              <h1 className="">$ {productDetail.price}</h1>
+              <p className="detail-quantity mb-4">
                 Số lượng {productDetail.quantity}
               </p>
 
