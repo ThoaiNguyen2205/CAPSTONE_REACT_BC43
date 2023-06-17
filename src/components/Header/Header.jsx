@@ -18,7 +18,7 @@ export default function Header() {
       return (
         <ul>
           <li>
-            <NavLink to="/search" className="btn btn-outline-secondary">
+            <NavLink to="/search" className="btn btn-outline-secondary ">
               <i className="fa fa-search"></i> Search
             </NavLink>
           </li>

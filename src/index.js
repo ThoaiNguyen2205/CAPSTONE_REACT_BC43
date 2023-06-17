@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 //import scss
 import "./assets/scss/base/base.scss";
-import "./assets/scss/pages/home.scss";
-import "./assets/scss/pages/detail.scss";
+// import "./assets/scss/pages/home.scss";
+// import "./assets/scss/pages/detail.scss";
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
 import HomeTemplate from "./templates/HomeTemplate";

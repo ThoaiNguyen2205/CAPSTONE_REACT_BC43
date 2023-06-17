@@ -191,6 +191,17 @@ const Profile = () => {
               <th>Total</th>
             </tr>
           </thead>
+          <tbody>
+            {}
+            <tr>
+              <td>1</td>
+              <td>Adidas</td>
+              <td>1</td>
+              <td>450$</td>
+              <td>3</td>
+              <td>1350$</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </form>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductApi } from "../../redux/reducers/productReducer";
 import { NavLink } from "react-router-dom";
-
+import "../../assets/scss/pages/home.scss";
 export default function Home() {
   const { arrProduct } = useSelector((state) => state.productReducer);
   console.log(arrProduct);
@@ -96,7 +96,7 @@ export default function Home() {
         <div className="row">
           {arrProduct.map((prod, index) => {
             return (
-              <div className="col-3" key={index}>
+              <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
                 <div className="card">
                   <div className="cards-img">
                     <img src={prod.image} alt="" />

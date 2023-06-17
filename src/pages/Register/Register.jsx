@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/css/base.min.css";
+
 import "../../assets/css/register.min.css";
 import "../../assets/css/register.css";
 import { useFormik } from "formik";
