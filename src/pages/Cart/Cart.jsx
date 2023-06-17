@@ -5,10 +5,13 @@ import {
   changeQuantityDetail,
   delProdCartAction,
 } from "../../redux/reducers/productReducer";
+import { httpup } from "../../util/config";
 
 const Cart = () => {
   const { arrProductCart } = useSelector((state) => state.productReducer);
+ 
   const dispatch = useDispatch();
+ 
 
   const totalCart = () => {
     let total = 0;
@@ -17,6 +20,11 @@ const Cart = () => {
     }
     return total;
   };
+  
+  
+
+
+
   return (
     <div style={{ minHeight: "70vh" }} className="mt-5">
       <h1 className="my-5 text-center"> Your Cart</h1>
@@ -99,7 +107,7 @@ const Cart = () => {
         </tfoot>
       </table>
       <div className="text-end me-5">
-        <button className="btn btn-success">Submit Order</button>
+        <button className="btn btn-success" >Submit Order</button>
       </div>
     </div>
   );
