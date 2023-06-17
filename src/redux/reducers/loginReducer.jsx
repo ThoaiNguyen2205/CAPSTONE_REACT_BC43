@@ -21,8 +21,57 @@ const initStateUserLogin = () => {
 };
 const initialState = {
   userLogin: initStateUserLogin(),
-  userProfile: {},
-};
+  userProfile: {
+    "ordersHistory": [
+      {
+        "orderDetail": [
+          {
+            "name": "Adidas Prophere Black White",
+            "alias": "adidas-prophere-black-white",
+            "shortDescription": "The midsole contains 20% more Boost for an amplified Boost feeling.\r\n\r\n",
+            "quantity": 990,
+            "price": 450,
+            "image": "https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png",
+            "description": "The adidas Primeknit upper wraps the foot with a supportive fit that enhances movement.\r\n\r\n"
+          }
+        ],
+        "id": 5447,
+        "date": "2023-06-16T00:40:00",
+        "status": null,
+        "email": "nphuc1@gmail.com",
+        "alias": ""
+      },
+      {
+        "orderDetail": [
+          {
+            "name": "Adidas Prophere Black White",
+            "alias": "adidas-prophere-black-white",
+            "shortDescription": "The midsole contains 20% more Boost for an amplified Boost feeling.\r\n\r\n",
+            "quantity": 990,
+            "price": 450,
+            "image": "https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png",
+            "description": "The adidas Primeknit upper wraps the foot with a supportive fit that enhances movement.\r\n\r\n"
+          }
+        ],
+        "id": 5572,
+        "date": "2023-06-17T01:18:30",
+        "status": null,
+        "email": "nphuc1@gmail.com",
+        "alias": ""
+      }
+    ],
+    "email": "nphuc1@gmail.com",
+    "name": "hoangphuc",
+    "password": null,
+    "gender": false,
+    "phone": "09617544212",
+    "facebookId": "",
+    "deleted": false,
+    "avatar": "https://i.pravatar.cc?u=nphuc1@gmail.com"
+  },
+  "dateTime": "2023-06-18T00:45:54.7044255+07:00"
+}
+
 const loginReducer = createSlice({
   name: "loginReducer",
   initialState,

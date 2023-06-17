@@ -18,9 +18,18 @@ const Profile = () => {
   console.log(userProfile);
 
 
+  const getProfileApi = () => {
+    const action = getProfileActionApi();
+    dispatch(action);
+  };
+  useEffect(() => {
+    getProfileApi();
+    console.log('test')
+  }, []);
 
 
   const profileForm = useFormik({
+    
     initialValues: userProfile,
     validationSchema: yup.object().shape({
       email: yup
@@ -52,18 +61,13 @@ const Profile = () => {
   });
 
 
-  const getProfileApi = () => {
-    const action = getProfileActionApi();
-    dispatch(action);
-  };
-  useEffect(() => {
-    getProfileApi();
-  }, []);
-
+ 
+  const ordersHistory = userProfile.ordersHistory;
   // const action = getProfileAction(profileForm.values);
   // dispatch(action);
+  
 
-  const ordersHistory = userProfile.ordersHistory;
+  
   console.log('lich su', userProfile.email)
   console.log('aaa', userProfile.ordersHistory)
   return (

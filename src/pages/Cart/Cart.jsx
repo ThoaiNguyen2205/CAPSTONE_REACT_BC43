@@ -35,8 +35,8 @@ const Cart = () => {
     return total;
   };
   
-  
 
+  
 
 
   const navigate = useNavigate();
