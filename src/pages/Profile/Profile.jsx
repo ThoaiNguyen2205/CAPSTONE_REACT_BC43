@@ -136,6 +136,7 @@ const Profile = () => {
                 type="password"
                 id="password"
                 name="password"
+                disabled
               />
             </div>
             <div className="row">
@@ -149,6 +150,7 @@ const Profile = () => {
                     type="radio"
                     value={true}
                     onInput={handleChange}
+                    checked={values.gender == true}
                   />
                   <label for="gender1" className="me-3">
                     Male
@@ -160,6 +162,7 @@ const Profile = () => {
                     type="radio"
                     value={false}
                     onInput={handleChange}
+                    checked={values.gender == false}
                   />
                   <label for="gender2">Female</label>
                 </div>
