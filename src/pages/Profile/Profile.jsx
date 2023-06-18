@@ -16,40 +16,39 @@ const Profile = () => {
   const { userProfile } = useSelector((state) => state.loginReducer);
   console.log("profile", userProfile);
   const dispatch = useDispatch();
-  console.log(userProfile);
-
 
   const getProfileApi = () => {
     const action = getProfileActionApi();
     dispatch(action);
   };
+
   useEffect(() => {
     getProfileApi();
-    console.log('test')
+    console.log("profile");
   }, []);
 
-
   const profileForm = useFormik({
-    
     initialValues: userProfile,
     validationSchema: yup.object().shape({
       email: yup
         .string()
-        .required("email is required")
-        .email("Email is invalid !"),
+        .required("Email is required")
+        .email("Email is invalid!"),
       password: yup
         .string()
-        .required("password is required!")
+        .required("Password is required!")
         .min(6, "6 - 32 characters")
         .max(32, "6 - 32 characters"),
-      name: yup.string().required("name is required"),
+      name: yup.string().required("Name is required"),
       phone: yup
         .string()
-        .required("Name cannot be blank !")
-        .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, "Phone is a number !"),
+        .required("Phone cannot be blank!")
+        .matches(
+          /(84|0[3|5|7|8|9])+([0-9]{8})\b/g,
+          "Phone must be a valid number!"
+        ),
     }),
     onSubmit: async (values) => {
-
       console.log("ketqua", values);
       try {
         const res = await http.post("/api/Users/updateProfile", values);
@@ -61,16 +60,17 @@ const Profile = () => {
     },
   });
 
+  const { values, handleChange, handleBlur, errors } = profileForm;
 
- 
   const ordersHistory = userProfile.ordersHistory;
-  const action = getProfileAction(profileForm.values);
+  console.log("ordes history", ordersHistory);
+  const action = getProfileAction(userProfile);
   dispatch(action);
-  
 
-  
-  console.log('lich su', userProfile.email)
-  console.log('aaa', userProfile.ordersHistory)
+  console.log("profile", userProfile);
+
+  console.log("lich su", userProfile.email);
+  console.log("aaa", userProfile.ordersHistory);
   return (
     <div>
       <form className="container" onSubmit={profileForm.handleSubmit}>
@@ -138,11 +138,8 @@ const Profile = () => {
                 type="password"
                 id="password"
                 name="password"
-
-
                 disabled
               />
-
             </div>
             <div className="row">
               <div className="col-6">
@@ -189,56 +186,74 @@ const Profile = () => {
           </a>
         </li>
       </ul>
-      {ordersHistory.map((prod, index) => {
-        return (
-          <div key={index} className="mb-5"><div className="text-success">Order have been placed on :{prod.date}</div>
-            <table
-              className="table text-center"
-              style={{ backgroundColor: "rgb(237, 236, 236)" }}
-            >
-              <thead>
-                <tr>
-                  
-                  <th>Name</th>
-                  <th>Image</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                
-                
+      <table className="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Date</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ordersHistory.map((prod, index) => {
+            return (
+              <tr className="" key={index}>
+                <td>{prod.id}</td>
+                <td>{prod.date}</td>
+                <td>
+                  {prod.orderDetail.map((item, index) => {
+                    return (
+                      <div key={index}>
+                        <img src={item.image} alt="" width={50} height={50} />
+                      </div>
+                    );
+                  })}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <table>
+        {ordersHistory.map((prod, index) => {
+          return (
+            <div key={index} className="mb-5">
+              <div className="text-success">
+                Order have been placed on :{prod.date}
+              </div>
+              <table
+                className="table text-center"
+                style={{ backgroundColor: "rgb(237, 236, 236)" }}
+              >
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {prod.orderDetail.map((prod, index) => {
                     return (
-                  <tr key={index} className="align-middle ">
-
+                      <tr key={index} className="align-middle ">
                         <td className="fs-5 text-success">{prod.name}</td>
                         <td>
                           <img src={prod.image} alt="" width={70} height={70} />
                         </td>
                         <td className="text-danger fs-5">{prod.price} $</td>
-                    </tr>
-                    )
+                      </tr>
+                    );
                   })}
-               
-
-
-
-
-
-
-              </tbody>
-            </table>
-          </div>
-        )
-      })}
-
-
-
-
-
+                </tbody>
+              </table>
+            </div>
+          );
+        })}
+      </table>
     </div>
-      
-   
   );
 };
 
