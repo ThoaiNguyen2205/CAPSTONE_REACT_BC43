@@ -68,7 +68,7 @@ http.interceptors.request.use(
   }
 );
 //Cấu hình cho response (kết quả trả về từ api)
-http.interceptors.response.use(
+httpup.interceptors.response.use(
   (res) => {
     return res;
   },
