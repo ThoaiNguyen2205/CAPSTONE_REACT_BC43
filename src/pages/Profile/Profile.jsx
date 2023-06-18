@@ -8,6 +8,7 @@ import { useFormik } from "formik";
 import {
   getProfileAction,
   getProfileActionApi,
+  updateProfile,
 } from "../../redux/reducers/loginReducer";
 import * as yup from "yup";
 import { http, httpup } from "../../util/config";
@@ -49,18 +50,35 @@ const Profile = () => {
           "Phone must be a valid number!"
         ),
     }),
-    onSubmit: async (values) => {
-      console.log("ketqua", values);
-      try {
-        const res = await http.post("/api/Users/updateProfile", values);
-        alert("Update finished");
-      } catch (err) {
-        console.log(err);
-        alert(err.response?.data.message);
-      }
-    },
+    // onSubmit: async (values) => {
+    //   console.log("ketqua", values);
+    //   try {
+    //     const res = await http.post("/api/Users/updateProfile", values);
+    //     alert("Update finished");
+    //     console.log("update", res);
+    //     // Cập nhật giá trị userProfile trong Redux Store
+    //     const updatedProfile = { ...userProfile, ...values };
+    //     const action = updateProfile(updatedProfile);
+    //     dispatch(action);
+    //   } catch (err) {
+    //     console.log(err);
+    //     alert(err.response?.data.message);
+    //   }
+    // },
   });
-  const { values, handleChange, handleBlur, errors } = { ...profileForm };
+  const handleSubmitApi = async () => {
+    try {
+      const res = await httpup.post("/api/Users/updateProfile", values);
+      const action = updateProfile(res.data);
+      dispatch(action); // Cập nhật userProfile trong Redux Store
+      alert("Update finished");
+      console.log("update", res);
+    } catch (err) {
+      console.log(err);
+      alert(err.response?.data.message);
+    }
+  };
+  const { values, handleChange, handleBlur, errors } = profileForm;
 
   const ordersHistory = userProfile.ordersHistory;
   console.log("orders history", ordersHistory);
@@ -74,7 +92,7 @@ const Profile = () => {
   console.log("aaa", userProfile.ordersHistory);
   return (
     <div>
-      <form className="container" onSubmit={profileForm.handleSubmit}>
+      <form className="container" onSubmit={handleSubmitApi}>
         <h3>{userProfile.name}</h3>
         <hr />
         <div className="row">
@@ -95,7 +113,7 @@ const Profile = () => {
                 id="email"
                 name="email"
                 value={values.email}
-                onChange={handleChange}
+                onInput={handleChange}
                 disabled
               />
             </div>
@@ -106,7 +124,7 @@ const Profile = () => {
                 id="phone"
                 name="phone"
                 value={values.phone}
-                onChange={handleChange}
+                onInput={handleChange}
                 onBlur={handleBlur}
               />
               {errors.phone && (
@@ -150,7 +168,7 @@ const Profile = () => {
                     type="radio"
                     value={true}
                     onInput={handleChange}
-                    checked={values.gender == true}
+                    checked={values.gender === true}
                   />
                   <label for="gender1" className="me-3">
                     Male
@@ -162,7 +180,7 @@ const Profile = () => {
                     type="radio"
                     value={false}
                     onInput={handleChange}
-                    checked={values.gender == false}
+                    checked={values.gender === false}
                   />
                   <label for="gender2">Female</label>
                 </div>

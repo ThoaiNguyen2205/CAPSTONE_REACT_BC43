@@ -84,10 +84,18 @@ const loginReducer = createSlice({
     getProfileAction: (state, action) => {
       state.userProfile = action.payload;
     },
+
+    updateProfile: (state, action) => {
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
+    },
   },
 });
 
-export const { loginAction, getProfileAction } = loginReducer.actions;
+export const { loginAction, getProfileAction, updateProfile } =
+  loginReducer.actions;
 
 export default loginReducer.reducer;
 
