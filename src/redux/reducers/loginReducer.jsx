@@ -84,11 +84,13 @@ const loginReducer = createSlice({
     getProfileAction: (state, action) => {
       state.userProfile = action.payload;
     },
-
     updateProfile: (state, action) => {
       return {
         ...state,
-        userProfile: action.payload,
+        userProfile: {
+          ...state.userProfile,
+          gender: action.payload.gender,
+        },
       };
     },
   },

@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import "../../assets/scss/scsspages/profile.scss";
 import { useFormik } from "formik";
 
 import {
@@ -69,7 +69,11 @@ const Profile = () => {
   const handleSubmitApi = async () => {
     try {
       const res = await httpup.post("/api/Users/updateProfile", values);
-      const action = updateProfile(res.data);
+      const updatedProfile = {
+        ...values,
+        gender: values.gender === "true" ? true : false,
+      };
+      const action = updateProfile(updatedProfile);
       dispatch(action); // Cập nhật userProfile trong Redux Store
       alert("Update finished");
       console.log("update", res);
@@ -78,7 +82,8 @@ const Profile = () => {
       alert(err.response?.data.message);
     }
   };
-  const { values, handleChange, handleBlur, errors } = profileForm;
+  const { values, handleChange, handleBlur, errors, setFieldValue } =
+    profileForm;
 
   const ordersHistory = userProfile.ordersHistory;
   console.log("orders history", ordersHistory);
@@ -91,7 +96,7 @@ const Profile = () => {
   console.log("password", userProfile.password);
   console.log("aaa", userProfile.ordersHistory);
   return (
-    <div>
+    <div className="profile">
       <form className="container" onSubmit={handleSubmitApi}>
         <h3>{userProfile.name}</h3>
         <hr />
@@ -161,28 +166,37 @@ const Profile = () => {
               <div className="col-6">
                 <div className="form-group mt-2">
                   <p>Gender</p>
-                  <input
-                    className="form-check-input "
-                    id="gender1"
-                    name="gender"
-                    type="radio"
-                    value={true}
-                    onInput={handleChange}
-                    checked={values.gender === true}
-                  />
-                  <label for="gender1" className="me-3">
-                    Male
-                  </label>
-                  <input
-                    className="form-check-input"
-                    id="gender2"
-                    name="gender"
-                    type="radio"
-                    value={false}
-                    onInput={handleChange}
-                    checked={values.gender === false}
-                  />
-                  <label for="gender2">Female</label>
+                  <div className="gender-group">
+                    <input
+                      className="form-check-input"
+                      id="gender1"
+                      name="gender"
+                      type="radio"
+                      value="true"
+                      checked={
+                        values.gender === "true" || userProfile.gender === true
+                      }
+                      onChange={handleChange}
+                    />
+                    <label for="gender1" className="me-3">
+                      Male
+                    </label>
+                  </div>
+                  <div className="gender-group ">
+                    <input
+                      className="form-check-input"
+                      id="gender2"
+                      name="gender"
+                      type="radio"
+                      value="false"
+                      checked={
+                        values.gender === "false" ||
+                        userProfile.gender === false
+                      }
+                      onChange={handleChange}
+                    />
+                    <label for="gender2">Female</label>
+                  </div>
                 </div>
               </div>
               <div className="col-6">
@@ -197,82 +211,121 @@ const Profile = () => {
         </div>
       </form>
       <hr />
-      <ul className="nav nav-tabs">
+      <ul className="nav nav-tabs container">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">
+          <a
+            className="nav-link active text-white"
+            aria-current="page"
+            href="#"
+            style={{
+              background:
+                "linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d017ee 89.71%)",
+            }}
+          >
             Order History
           </a>
         </li>
       </ul>
-      {/* <table className="table">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Date</th>
-            <th>Image</th>
-            <th>Price</th>
-            <th>quantity</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ordersHistory.map((prod, index) => {
-            return (
-              <tr className="" key={index}>
-                <td>{prod.id}</td>
-                <td>{prod.date}</td>
-                <td>
-                  {prod.orderDetail.map((item, index) => {
-                    return (
-                      <div key={index}>
-                        <img src={item.image} alt="" width={50} height={50} />
-                      </div>
-                    );
-                  })}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table> */}
-      <table>
-        {ordersHistory.map((prod, index) => {
-          return (
-            <div key={index} className="mb-5">
-              <div className="text-success">
-                Order have been placed on :{prod.date}
-              </div>
-              <table
-                className="table text-center"
-                style={{ backgroundColor: "rgb(237, 236, 236)" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {prod.orderDetail.map((prod, index) => {
-                    return (
-                      <tr key={index} className="align-middle ">
-                        <td className="fs-5 text-success">{prod.name}</td>
-                        <td>
-                          <img src={prod.image} alt="" width={70} height={70} />
-                        </td>
-                        <td className="text-danger fs-5">{prod.price} $</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          );
-        })}
-      </table>
+
+      <div className="table-order container">
+        <table className="text-center table table-bordered align-middle table1">
+          <thead className="bg-dark text-white">
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Order Detail</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ordersHistory.map((prod, index) => {
+              return (
+                <tr key={index}>
+                  <td className="order-info">
+                    <p>{prod.id}</p>
+                  </td>
+                  <td className="order-info">
+                    <p className="text-primary">{prod.date}</p>
+                  </td>
+                  <td className="order-info">
+                    <table className=" table table-bordered border-secondary align-middle">
+                      <thead>
+                        <tr>
+                          <th className="col1">Name</th>
+                          <th className="col2">Image</th>
+                          <th className="col3">Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {prod.orderDetail.map((item, index) => {
+                          return (
+                            <tr className="" key={index}>
+                              <td>
+                                <h5 className="text-success">{item.name}</h5>
+                              </td>
+                              <td>
+                                <img src={item.image} alt="" />
+                              </td>
+
+                              <td>
+                                <h4 className="text-danger">{item.price} $</h4>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </td>
+                  <td className="order-info">
+                    <p>{prod.email}</p>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
 
 export default Profile;
+
+// {
+//   ordersHistory.map((prod, index) => {
+//     return (
+//       <div key={index} className="mb-5">
+//         <div className="text-success">
+//           Order have been placed on :{prod.date}
+//         </div>
+//         <table
+//           className="table text-center container"
+//           style={{ backgroundColor: "rgb(237, 236, 236)" }}
+//         >
+//           <thead>
+//             <tr>
+//               <th>Name</th>
+//               <th>Image</th>
+//               <th>Price</th>
+//               <th>Email</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {prod.orderDetail.map((prod, index) => {
+//               return (
+//                 <tr key={index} className="align-middle ">
+//                   <td className="fs-5 text-success">{prod.name}</td>
+//                   <td>
+//                     <img src={prod.image} alt="" width={70} height={70} />
+//                   </td>
+//                   <td className="text-danger fs-5">{prod.price} $</td>
+//                   <td>{prod.email}</td>
+//                 </tr>
+//               );
+//             })}
+//           </tbody>
+//         </table>
+//       </div>
+//     );
+//   });
+// }

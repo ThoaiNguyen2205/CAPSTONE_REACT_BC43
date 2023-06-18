@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Navigation from "../components/Navigation/Navigation";
-// import "../../assets/scss/base/base.scss";
+import "../assets/scss/base/base.scss";
 export default function HomeTemplate() {
   return (
     <div>
@@ -14,6 +14,9 @@ export default function HomeTemplate() {
       </div>
 
       <Footer />
+      <a id="button">
+        <i class="fa fa-arrow-up"></i>
+      </a>
     </div>
   );
 }
