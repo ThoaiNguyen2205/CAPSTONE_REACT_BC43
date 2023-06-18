@@ -8,9 +8,6 @@ import {
 } from "../../redux/reducers/productReducer";
 import { http } from "../../util/config";
 
-
-
-
 const Cart = () => {
   const { arrProductCart, productOrder } = useSelector(
     (state) => state.productReducer
@@ -22,6 +19,7 @@ const Cart = () => {
     //Gọi api getProfile sử dụng redux async action
     const action = getProfileActionApi();
     dispatch(action);
+    console.log("profile", userProfile);
   };
 
   useEffect(() => {
@@ -34,14 +32,10 @@ const Cart = () => {
     }
     return total;
   };
-  
-
-  
-
 
   const navigate = useNavigate();
   const onSubmit = async () => {
-    console.log();
+    console.log("profile", userProfile);
     try {
       const data = {
         email: userProfile.email,
@@ -57,7 +51,7 @@ const Cart = () => {
       alert(err.response.data.message);
     }
   };
- 
+
   return (
     <div style={{ minHeight: "70vh" }} className="mt-5">
       <h1 className="my-5 text-center"> Your Cart</h1>

@@ -28,6 +28,7 @@ const Profile = () => {
   }, []);
 
   const profileForm = useFormik({
+    enableReinitialize: true,
     initialValues: userProfile,
     validationSchema: yup.object().shape({
       email: yup
@@ -59,17 +60,17 @@ const Profile = () => {
       }
     },
   });
-
-  const { values, handleChange, handleBlur, errors } = profileForm;
+  const { values, handleChange, handleBlur, errors } = { ...profileForm };
 
   const ordersHistory = userProfile.ordersHistory;
-  console.log("ordes history", ordersHistory);
+  console.log("orders history", ordersHistory);
   const action = getProfileAction(userProfile);
   dispatch(action);
 
   console.log("profile", userProfile);
 
   console.log("lich su", userProfile.email);
+  console.log("password", userProfile.password);
   console.log("aaa", userProfile.ordersHistory);
   return (
     <div>
@@ -93,8 +94,8 @@ const Profile = () => {
                 className="form-control"
                 id="email"
                 name="email"
-                value={userProfile.email}
-                onInput={profileForm.handleChange}
+                value={values.email}
+                onChange={handleChange}
                 disabled
               />
             </div>
@@ -104,14 +105,12 @@ const Profile = () => {
                 className="form-control"
                 id="phone"
                 name="phone"
-                value={userProfile.phone}
-                onInput={profileForm.handleChange}
-                onBlur={profileForm.handleBlur}
+                value={values.phone}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
-              {profileForm.errors.phone && (
-                <p className="alert alert-danger  mt-2">
-                  {profileForm.errors.phone}
-                </p>
+              {errors.phone && (
+                <p className="alert alert-danger  mt-2">{errors.phone}</p>
               )}
             </div>
           </div>
@@ -122,23 +121,21 @@ const Profile = () => {
                 className="form-control"
                 id="name"
                 name="name"
-                value={userProfile.name}
-                onInput={profileForm.handleChange}
+                value={values.name}
+                onInput={handleChange}
               />
-              {profileForm.errors.name && (
-                <p className="alert alert-danger  mt-2">
-                  {profileForm.errors.name}
-                </p>
+              {errors.name && (
+                <p className="alert alert-danger  mt-2">{errors.name}</p>
               )}
             </div>
             <div className="form-group">
               <p className="mb-0 mt-4">Password</p>
               <input
                 className="form-control"
+                value={values.password}
                 type="password"
                 id="password"
                 name="password"
-                disabled
               />
             </div>
             <div className="row">
@@ -151,7 +148,7 @@ const Profile = () => {
                     name="gender"
                     type="radio"
                     value={true}
-                    onInput={profileForm.handleChange}
+                    onInput={handleChange}
                   />
                   <label for="gender1" className="me-3">
                     Male
@@ -162,7 +159,7 @@ const Profile = () => {
                     name="gender"
                     type="radio"
                     value={false}
-                    onInput={profileForm.handleChange}
+                    onInput={handleChange}
                   />
                   <label for="gender2">Female</label>
                 </div>
@@ -186,7 +183,7 @@ const Profile = () => {
           </a>
         </li>
       </ul>
-      <table className="table">
+      {/* <table className="table">
         <thead>
           <tr>
             <th>id</th>
@@ -216,7 +213,7 @@ const Profile = () => {
             );
           })}
         </tbody>
-      </table>
+      </table> */}
       <table>
         {ordersHistory.map((prod, index) => {
           return (
