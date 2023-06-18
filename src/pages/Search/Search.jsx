@@ -51,8 +51,8 @@ const Search = () => {
   };
 
   return (
-    <div className="container">
-      <h3 className="my-3 d-inline-block p-2 rounded text-primary w-25  align-items-center">
+    <div className="container search">
+      <h3 className="my-3 d-inline-block p-2 rounded text-primary  align-items-center">
         Search products
       </h3>
       <form className="form-group" onSubmit={handleSubmit}>
@@ -72,7 +72,7 @@ const Search = () => {
           background:
             "linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d017ee 89.71%)",
         }}
-        className="my-3 d-inline-block p-2 rounded text-white w-25  align-items-center"
+        className="my-3 d-inline-block p-2 rounded text-white  align-items-center"
       >
         Found results {keyword.get("key") + `...`} ({arrProSearch.length})
       </h4>
@@ -98,8 +98,8 @@ const Search = () => {
       <div className="row">
         {arrProSearch.map((item, index) => {
           return (
-            <div className="col-3 mt-2" key={index}>
-              <div className="card" style={{ minHeight: 450 }}>
+            <div className="col-lg-3 col-md-4 col-sm-6 mt-2" key={index}>
+              <div className="card">
                 <img src={item.image} alt="" className="w-75" />
                 <div className="card-body">
                   <h3>{item.name}</h3>

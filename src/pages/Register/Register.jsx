@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/css/base.min.css";
+
 import "../../assets/css/register.min.css";
 import "../../assets/css/register.css";
 import { useFormik } from "formik";
@@ -54,33 +54,6 @@ const Register = () => {
 
   return (
     <div style={{ height: "130vh" }}>
-      <section className="menu-shoes">
-        <div className="container-fluid">
-          <div className="menu-content d-flex align-items-center">
-            <ul>
-              <li>
-                <a href="./index.html">Home</a>
-              </li>
-              <li>
-                <a href="#" className="menu-opacity">
-                  Men
-                </a>
-              </li>
-              <li>
-                <a href="#" className="menu-opacity">
-                  Woman
-                </a>
-              </li>
-              <li>
-                <a href="#">Kid</a>
-              </li>
-              <li>
-                <a href="#">Sport</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
       <div className="ctrlqFormContentWrapper">
         <div className="ctrlqHeaderMast" />
         <div className="ctrlqCenteredContent">

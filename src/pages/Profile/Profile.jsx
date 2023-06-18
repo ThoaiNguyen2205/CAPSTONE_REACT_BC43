@@ -14,6 +14,7 @@ import { http, httpup } from "../../util/config";
 
 const Profile = () => {
   const { userProfile } = useSelector((state) => state.loginReducer);
+  console.log("profile", userProfile);
   const dispatch = useDispatch();
   console.log(userProfile);
 
@@ -236,6 +237,8 @@ const Profile = () => {
 
 
     </div>
+      
+   
   );
 };
 

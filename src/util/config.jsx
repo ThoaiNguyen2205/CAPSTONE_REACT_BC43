@@ -21,10 +21,10 @@ httpDetail.interceptors.request.use(
   (config) => {
     config = { ...config };
     return config;
+  },
+  (err) => {
+    return Promise.reject(err);
   }
-  // (err) => {
-  //   return Promise.reject(err);
-  // }
 );
 
 export const { saveStorageJSON, getStorageJSON, clearStorage } = {
@@ -45,12 +45,12 @@ export const { saveStorageJSON, getStorageJSON, clearStorage } = {
   },
 };
 
-http.interceptors.request.use(
+httpup.interceptors.request.use(
   (config) => {
     config.headers = { ...config.headers };
     let token = getStorageJSON(USER_LOGIN)?.accessToken;
     config.headers.Authorization = `Bearer ${token}`;
-    config.headers.tokenCybersoft = `CybersoftDemo`;
+
     return config;
   },
   (err) => {
@@ -58,18 +58,27 @@ http.interceptors.request.use(
   }
 );
 
+http.interceptors.request.use(
+  (config) => {
+    config = { ...config };
+    return config;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
+);
 //Cấu hình cho response (kết quả trả về từ api)
-http.interceptors.response.use(
+httpup.interceptors.response.use(
   (res) => {
     return res;
   },
   (err) => {
     //Xử lý lỗi cho api bị lỗi theo status code
-    // console.log(err);
+    console.log(err);
     if (err.response?.status === 401) {
       alert("Đăng nhập để vào trang này !");
       history.push("/login");
     }
-    return;
+    return Promise.reject(err);
   }
 );

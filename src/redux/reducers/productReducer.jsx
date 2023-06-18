@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { http } from "../../util/config";
+import { http, httpDetail } from "../../util/config";
 
 const initialState = {
   arrProduct: [],

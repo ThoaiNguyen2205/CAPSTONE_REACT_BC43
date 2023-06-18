@@ -3,6 +3,7 @@ import { history } from "../..";
 import {
   getStorageJSON,
   http,
+  httpDetail,
   httpup,
   saveStorageJSON,
   USER_LOGIN,
@@ -111,8 +112,9 @@ export const loginActionApi = (userLogin) => {
 };
 
 export const getProfileActionApi = () => {
-  return async (dispatch) => {
-    const res = await http.post(`/api/Users/getProfile`);
+  return async (dispatch, getState) => {
+    const accessToken = getState().loginReducer.userLogin.accessToken;
+    const res = await httpup.post(`/api/Users/getProfile`);
     const action = getProfileAction(res.data.content);
     dispatch(action);
   };

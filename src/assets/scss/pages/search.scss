@@ -1,4 +1,7 @@
-.container {
+@import '../themes/varible.scss';
+@import '../themes/mixin.scss';
+
+.search {
     h3 {}
 
     form {}
@@ -11,8 +14,18 @@
     }
 
     .row {
-        .col-3 {
+        .col-lg-3 {
             .card {
+                min-height: 430px;
+
+                @media screen and (max-width:768px) {
+                    min-height: 380px;
+                }
+
+                @media screen and (max-width:576px) {
+                    min-height: 350px;
+                }
+
                 img {
                     vertical-align: middle;
                     margin-left: 50%;
@@ -20,14 +33,30 @@
                 }
 
                 .card-body {
-                    h3 {}
+                    h3 {
+                        @media screen and (max-width:768px) {
+                            font-size: 24px;
+                        }
+
+                        @media screen and (max-width:576px) {
+                            font-size: 22px;
+                        }
+                    }
 
                     p {}
 
                 }
 
                 .card-footer {
-                    a {}
+                    a {
+                        @media screen and (max-width:768px) {
+                            font-size: 14px;
+                        }
+
+                        @media screen and (max-width:576px) {
+                            font-size: 14px;
+                        }
+                    }
                 }
 
             }
