@@ -14,6 +14,7 @@ import { http, httpup } from "../../util/config";
 
 const Profile = () => {
   const { userProfile } = useSelector((state) => state.loginReducer);
+  console.log("profile", userProfile);
   const dispatch = useDispatch();
 
   const getProfileApi = () => {
@@ -192,7 +193,6 @@ const Profile = () => {
             </tr>
           </thead>
           <tbody>
-            {}
             <tr>
               <td>1</td>
               <td>Adidas</td>
