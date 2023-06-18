@@ -63,8 +63,8 @@ const Profile = () => {
 
  
   const ordersHistory = userProfile.ordersHistory;
-  // const action = getProfileAction(profileForm.values);
-  // dispatch(action);
+  const action = getProfileAction(profileForm.values);
+  dispatch(action);
   
 
   
