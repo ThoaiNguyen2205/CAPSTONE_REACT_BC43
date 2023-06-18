@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/CAPSTONE_REACT_BC43/static/css/main.61ef1ed3.css",
-    "main.js": "/CAPSTONE_REACT_BC43/static/js/main.5f6554fe.js",
+    "main.js": "/CAPSTONE_REACT_BC43/static/js/main.b9dd50b8.js",
     "index.html": "/CAPSTONE_REACT_BC43/index.html",
     "main.61ef1ed3.css.map": "/CAPSTONE_REACT_BC43/static/css/main.61ef1ed3.css.map",
-    "main.5f6554fe.js.map": "/CAPSTONE_REACT_BC43/static/js/main.5f6554fe.js.map"
+    "main.b9dd50b8.js.map": "/CAPSTONE_REACT_BC43/static/js/main.b9dd50b8.js.map"
   },
   "entrypoints": [
     "static/css/main.61ef1ed3.css",
-    "static/js/main.5f6554fe.js"
+    "static/js/main.b9dd50b8.js"
   ]
 }
