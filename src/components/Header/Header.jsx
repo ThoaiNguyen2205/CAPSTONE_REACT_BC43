@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import { USER_LOGIN, clearStorage } from "../../util/config";
 
@@ -23,21 +23,21 @@ export default function Header() {
           </li>
           <li>
             <NavLink to="/cart" className=" btn btn-outline-secondary ">
-              <span className="fs-5 me-2">({total})</span>
+              <span className=" me-2">({total})</span>
               <i className="fa fa-cart-plus"></i>
             </NavLink>
           </li>
 
           <li>
-            <NavLink
-              className=" btn btn-outline-secondary"
+            <a
+              className="btn btn-outline-secondary"
               onClick={() => {
                 clearStorage(USER_LOGIN);
                 window.location.reload(); //F5
               }}
             >
               <i className="fa fa-sign-in"></i> Logout
-            </NavLink>
+            </a>
           </li>
           <li className="">
             <NavLink

@@ -77,7 +77,7 @@ const Search = () => {
         Found results {keyword.get("key") + `...`} ({arrProSearch.length})
       </h4>
       <div className="sort w-25 ">
-        <h4 className="mt-4">Price</h4>
+        <h4 className="mt-4 text-danger">Price</h4>
         <div
           className=" d-flex justify-content-between align-items-center py-2"
           onClick={sortDescrease}

@@ -4,6 +4,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Navigation from "../components/Navigation/Navigation";
 import "../assets/scss/base/base.scss";
+import BackToTopButton from "../components/BackToTop/BackToTop";
 export default function HomeTemplate() {
   return (
     <div>
@@ -14,9 +15,7 @@ export default function HomeTemplate() {
       </div>
 
       <Footer />
-      <a id="button">
-        <i class="fa fa-arrow-up"></i>
-      </a>
+      <BackToTopButton />
     </div>
   );
 }

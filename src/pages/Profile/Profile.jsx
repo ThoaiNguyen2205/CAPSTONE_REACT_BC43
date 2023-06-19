@@ -213,7 +213,7 @@ const Profile = () => {
       <hr />
       <ul className="nav nav-tabs container">
         <li className="nav-item">
-          <a
+          <p
             className="nav-link active text-white"
             aria-current="page"
             href="#"
@@ -223,7 +223,7 @@ const Profile = () => {
             }}
           >
             Order History
-          </a>
+          </p>
         </li>
       </ul>
 
