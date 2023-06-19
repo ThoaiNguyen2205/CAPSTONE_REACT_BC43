@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useSearchParams } from "react-router-dom";
 import "../../assets/scss/pages/search.scss";
 
@@ -17,6 +17,13 @@ const Search = () => {
   const getProdByKeyword = async (keyword) => {
     const result = await axios({
       url: `https://shop.cyberlearn.vn/api/Product?keyword=${keyword}`,
+      method: "GET",
+    });
+    setArrProSearch(result.data.content);
+  };
+  const getAllProdByKeyword = async () => {
+    const result = await axios({
+      url: `https://shop.cyberlearn.vn/api/Product`,
       method: "GET",
     });
     setArrProSearch(result.data.content);
@@ -64,6 +71,9 @@ const Search = () => {
         <button className="btn btn-primary">
           {" "}
           <i className="fa fa-search"></i>
+        </button>
+        <button className="btn btn-primary ms-3" onClick={getAllProdByKeyword}>
+          All
         </button>
       </form>
 

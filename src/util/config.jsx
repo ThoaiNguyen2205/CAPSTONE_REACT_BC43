@@ -79,6 +79,6 @@ httpup.interceptors.response.use(
       alert("Đăng nhập để vào trang này !");
       history.push("/login");
     }
-    return;
+    return Promise.reject(err);
   }
 );

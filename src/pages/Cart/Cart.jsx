@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { history } from "../../index";
 import { getProfileActionApi } from "../../redux/reducers/loginReducer";
 import {
   changeQuantityCart,
@@ -12,19 +13,25 @@ const Cart = () => {
   const { arrProductCart, productOrder } = useSelector(
     (state) => state.productReducer
   );
+  const { isAuthenticated } = useSelector((state) => state.loginReducer);
   const { userProfile } = useSelector((state) => state.loginReducer);
   console.log("orde", productOrder);
   const dispatch = useDispatch();
+
   const getProfileApi = () => {
-    //Gọi api getProfile sử dụng redux async action
-    const action = getProfileActionApi();
-    dispatch(action);
-    console.log("profile", userProfile);
+    if (userProfile) {
+      // Gọi api getProfile sử dụng redux async action
+      const action = getProfileActionApi();
+      dispatch(action);
+      console.log("profile", userProfile);
+    }
   };
 
   useEffect(() => {
-    getProfileApi();
-  }, []);
+    if (userProfile) {
+      getProfileApi();
+    }
+  }, [userProfile]);
   const totalCart = () => {
     let total = 0;
     for (let itemCart of arrProductCart) {
@@ -36,6 +43,10 @@ const Cart = () => {
   const navigate = useNavigate();
   const onSubmit = async () => {
     console.log("profile", userProfile);
+    if (arrProductCart.length === 0) {
+      alert("Không có dữ liệu đặt hàng !!!");
+      return;
+    }
     try {
       const data = {
         email: userProfile.email,

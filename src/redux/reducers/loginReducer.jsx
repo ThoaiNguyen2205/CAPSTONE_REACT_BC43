@@ -21,6 +21,7 @@ const initStateUserLogin = () => {
   return userLoginInit;
 };
 const initialState = {
+  isAuthenticated: false,
   userLogin: initStateUserLogin(),
   userProfile: {
     ordersHistory: [
@@ -80,6 +81,7 @@ const loginReducer = createSlice({
     loginAction: (state, action) => {
       const userLogin = { ...action.payload };
       state.userLogin = userLogin;
+      state.isAuthenticated = false;
     },
     getProfileAction: (state, action) => {
       state.userProfile = action.payload;
@@ -123,8 +125,15 @@ export const loginActionApi = (userLogin) => {
 export const getProfileActionApi = () => {
   return async (dispatch, getState) => {
     const accessToken = getState().loginReducer.userLogin.accessToken;
-    const res = await httpup.post(`/api/Users/getProfile`);
-    const action = getProfileAction(res.data.content);
-    dispatch(action);
+    try {
+      const res = await httpup.post(`/api/Users/getProfile`);
+      const userProfile = res.data.content;
+      if (userProfile) {
+        const action = getProfileAction(res.data.content);
+        dispatch(action);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 };

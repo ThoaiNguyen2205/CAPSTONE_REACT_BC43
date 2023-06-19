@@ -92,7 +92,7 @@ const Detail = () => {
   // useEffect(() => {
   //   getProfileApi();
   // }, []);
-
+  const { userProfile } = useSelector((state) => state.loginReducer);
   const getProductDetailApi = async (id) => {
     const result = await httpDetail.get(`/api/product/getbyid?id=${id}`);
 
@@ -100,8 +100,13 @@ const Detail = () => {
     setProductDetail(result.data.content);
   };
   const addToCart = () => {
+    if (userProfile.email === "") {
+      history.push("/cart");
+      return;
+    }
     const action = addToCartAction(productDetail);
     dispatch(action);
+    history.push("/cart");
   };
   const { arrProductCart } = useSelector((state) => state.productReducer);
 
@@ -140,9 +145,9 @@ const Detail = () => {
                 Số lượng {productDetail.quantity}
               </p>
 
-              <NavLink to="/cart" className="btn btn-add" onClick={addToCart}>
+              <a className="btn btn-add" onClick={addToCart}>
                 Add to cart
-              </NavLink>
+              </a>
               <NavLink to="/cart" className="btn btn-add ms-4">
                 Your Cart ({total})
               </NavLink>
