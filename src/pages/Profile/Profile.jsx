@@ -50,21 +50,6 @@ const Profile = () => {
           "Phone must be a valid number!"
         ),
     }),
-    // onSubmit: async (values) => {
-    //   console.log("ketqua", values);
-    //   try {
-    //     const res = await http.post("/api/Users/updateProfile", values);
-    //     alert("Update finished");
-    //     console.log("update", res);
-    //     // Cập nhật giá trị userProfile trong Redux Store
-    //     const updatedProfile = { ...userProfile, ...values };
-    //     const action = updateProfile(updatedProfile);
-    //     dispatch(action);
-    //   } catch (err) {
-    //     console.log(err);
-    //     alert(err.response?.data.message);
-    //   }
-    // },
   });
   const handleSubmitApi = async () => {
     try {
@@ -290,42 +275,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-// {
-//   ordersHistory.map((prod, index) => {
-//     return (
-//       <div key={index} className="mb-5">
-//         <div className="text-success">
-//           Order have been placed on :{prod.date}
-//         </div>
-//         <table
-//           className="table text-center container"
-//           style={{ backgroundColor: "rgb(237, 236, 236)" }}
-//         >
-//           <thead>
-//             <tr>
-//               <th>Name</th>
-//               <th>Image</th>
-//               <th>Price</th>
-//               <th>Email</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {prod.orderDetail.map((prod, index) => {
-//               return (
-//                 <tr key={index} className="align-middle ">
-//                   <td className="fs-5 text-success">{prod.name}</td>
-//                   <td>
-//                     <img src={prod.image} alt="" width={70} height={70} />
-//                   </td>
-//                   <td className="text-danger fs-5">{prod.price} $</td>
-//                   <td>{prod.email}</td>
-//                 </tr>
-//               );
-//             })}
-//           </tbody>
-//         </table>
-//       </div>
-//     );
-//   });
-// }

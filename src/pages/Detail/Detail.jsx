@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { history } from "../../index";
 import { addToCartAction } from "../../redux/reducers/productReducer";
 import { NavLink, useParams } from "react-router-dom";
-import axios from "axios";
+
 import "../../assets/scss/pages/detail.scss";
-import { http, httpDetail } from "../../util/config";
+import { httpDetail } from "../../util/config";
 
 const Detail = () => {
   const [productDetail, setProductDetail] = useState({
@@ -83,15 +83,6 @@ const Detail = () => {
     getProductDetailApi(params.id);
     console.log(params);
   }, [params.id]);
-  // const getProfileApi = () => {
-  //   //Gọi api getProfile sử dụng redux async action
-  //   const action = getProfileActionApi();
-  //   dispatch(action);
-  // };
-
-  // useEffect(() => {
-  //   getProfileApi();
-  // }, []);
   const { userProfile } = useSelector((state) => state.loginReducer);
   const getProductDetailApi = async (id) => {
     const result = await httpDetail.get(`/api/product/getbyid?id=${id}`);
