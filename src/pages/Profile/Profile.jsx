@@ -1,6 +1,6 @@
 //rafce
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "../../assets/scss/scsspages/profile.scss";
 import { useFormik } from "formik";
@@ -11,22 +11,20 @@ import {
   updateProfile,
 } from "../../redux/reducers/loginReducer";
 import * as yup from "yup";
-import { http, httpup } from "../../util/config";
+import { httpup } from "../../util/config";
 
 const Profile = () => {
   const { userProfile } = useSelector((state) => state.loginReducer);
-  console.log("profile", userProfile);
   const dispatch = useDispatch();
 
-  const getProfileApi = () => {
-    const action = getProfileActionApi();
-    dispatch(action);
-  };
+  // const getProfileApi = () => {
+  //   const action = getProfileActionApi();
+  //   dispatch(action);
+  // };
 
   useEffect(() => {
-    getProfileApi();
-    console.log("profile");
-  }, []);
+    dispatch(getProfileActionApi());
+  }, [dispatch]);
 
   const profileForm = useFormik({
     enableReinitialize: true,
@@ -51,6 +49,9 @@ const Profile = () => {
         ),
     }),
   });
+  console.log("proForm", profileForm);
+  const { values, handleChange, handleBlur, handleSubmit, errors } =
+    profileForm;
   const handleSubmitApi = async () => {
     try {
       const res = await httpup.post("/api/Users/updateProfile", values);
@@ -58,6 +59,7 @@ const Profile = () => {
         ...values,
         gender: values.gender === "true" ? true : false,
       };
+      console.log("update", updateProfile);
       const action = updateProfile(updatedProfile);
       dispatch(action); // Cập nhật userProfile trong Redux Store
       alert("Update finished");
@@ -67,19 +69,12 @@ const Profile = () => {
       alert(err.response?.data.message);
     }
   };
-  const { values, handleChange, handleBlur, errors, setFieldValue } =
-    profileForm;
 
   const ordersHistory = userProfile.ordersHistory;
   console.log("orders history", ordersHistory);
   const action = getProfileAction(userProfile);
   dispatch(action);
 
-  console.log("profile", userProfile);
-
-  console.log("lich su", userProfile.email);
-  console.log("password", userProfile.password);
-  console.log("aaa", userProfile.ordersHistory);
   return (
     <div className="profile">
       <form className="container" onSubmit={handleSubmitApi}>
@@ -89,6 +84,7 @@ const Profile = () => {
           <div className="col-2">
             <div className="form-group">
               <img
+                className="rounded-circle"
                 src="https://i.pravatar.cc?u=2"
                 alt=""
                 style={{ width: "100%" }}

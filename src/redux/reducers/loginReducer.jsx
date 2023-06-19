@@ -69,13 +69,7 @@ const loginReducer = createSlice({
       state.userProfile = action.payload;
     },
     updateProfile: (state, action) => {
-      return {
-        ...state,
-        userProfile: {
-          ...state.userProfile,
-          gender: action.payload.gender,
-        },
-      };
+      state.userProfile = action.payload;
     },
   },
 });

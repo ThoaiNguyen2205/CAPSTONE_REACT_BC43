@@ -10,10 +10,11 @@ export default function HomeTemplate() {
     <div>
       <Header />
       <Navigation />
+      <hr />
       <div style={{ minHeight: "70vh" }}>
         <Outlet />
       </div>
-
+      <hr />
       <Footer />
       <BackToTopButton />
     </div>
