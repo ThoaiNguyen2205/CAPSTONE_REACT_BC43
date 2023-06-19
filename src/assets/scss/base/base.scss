@@ -259,28 +259,31 @@ a {
     visibility: hidden;
     box-shadow: -4px 4px 24px -10px #f55f8d;
     z-index: 1000;
-}
 
-#button i {
-    line-height: 50px;
-    color: white;
-}
+    i {
+        line-height: 50px;
+        color: white;
+    }
 
-#button::after {
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 2em;
-    line-height: 50px;
-    color: #fff;
-}
+    &::after {
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 2em;
+        line-height: 50px;
+        color: #fff;
+    }
 
-#button:hover {
-    cursor: pointer;
-}
+    &:hover {
+        cursor: pointer;
+    }
 
-#button:active {
-    background-color: #555;
+    &:active {
+        background-color: #555;
+    }
+
+
+
 }
 
 #button.show {
