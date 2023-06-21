@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { history } from "../../index";
 import { getProfileActionApi } from "../../redux/reducers/loginReducer";
+import "../../assets/scss/pages/cart.scss";
 import {
   changeQuantityCart,
   delProdCartAction,
 } from "../../redux/reducers/productReducer";
-import { http } from "../../util/config";
+import { getStorageJSON, http } from "../../util/config";
 
 const Cart = () => {
   const { arrProductCart, productOrder } = useSelector(
     (state) => state.productReducer
   );
+
   const { isAuthenticated } = useSelector((state) => state.loginReducer);
   const { userProfile } = useSelector((state) => state.loginReducer);
   console.log("orde", productOrder);
@@ -28,10 +30,8 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    if (userProfile) {
-      getProfileApi();
-    }
-  }, [userProfile]);
+    getProfileApi();
+  }, []);
   const totalCart = () => {
     let total = 0;
     for (let itemCart of arrProductCart) {
@@ -64,7 +64,7 @@ const Cart = () => {
   };
 
   return (
-    <div style={{ minHeight: "70vh" }} className="mt-5">
+    <div style={{ minHeight: "70vh" }} className="mt-5 cart">
       <h1 className="my-5 text-center"> Your Cart</h1>
       <table
         className="table text-center"
@@ -85,45 +85,53 @@ const Cart = () => {
           {arrProductCart.map((prod, index) => {
             return (
               <tr key={index} className="align-middle">
-                <td className="fs-5">{prod.id}</td>
-                <td className="fs-5 text-success">{prod.name}</td>
-                <td>
-                  <img src={prod.image} alt="" width={70} height={70} />
+                <td className="productID">
+                  <h5>{prod.id}</h5>
                 </td>
-                <td className="text-danger fs-5">{prod.price} $</td>
-                <td>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                      const action = changeQuantityCart({
-                        id: prod.id,
-                        quantity: 1,
-                      });
-                      dispatch(action);
-                    }}
-                  >
-                    +
-                  </button>
-                  <span className="mx-2">{prod.quantityCart}</span>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                      const action = changeQuantityCart({
-                        id: prod.id,
-                        quantity: -1,
-                      });
-                      dispatch(action);
-                    }}
-                  >
-                    -
-                  </button>
-                </td>
-                <td className="text-danger fs-5">
-                  {(prod.price * prod.quantityCart).toLocaleString()} $
+                <td className=" text-success">
+                  <h5>{prod.name}</h5>
                 </td>
                 <td>
+                  <img src={prod.image} alt="" />
+                </td>
+                <td className="text-danger">
+                  <h5>{prod.price} $</h5>
+                </td>
+                <td>
+                  <div>
+                    <button
+                      className="btn btn-primary btn-quantity"
+                      onClick={() => {
+                        const action = changeQuantityCart({
+                          id: prod.id,
+                          quantity: 1,
+                        });
+                        dispatch(action);
+                      }}
+                    >
+                      +
+                    </button>
+                    <span className="">{prod.quantityCart}</span>
+                    <button
+                      className="btn btn-primary btn-quantity"
+                      onClick={() => {
+                        const action = changeQuantityCart({
+                          id: prod.id,
+                          quantity: -1,
+                        });
+                        dispatch(action);
+                      }}
+                    >
+                      -
+                    </button>
+                  </div>
+                </td>
+                <td className="text-danger ">
+                  <h5>{(prod.price * prod.quantityCart).toLocaleString()} $</h5>
+                </td>
+                <td>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger btn-del"
                     onClick={() => {
                       const action = delProdCartAction(prod.id);
                       console.log(action);
@@ -139,7 +147,7 @@ const Cart = () => {
         </tbody>
         <tfoot>
           <h5 className="mt-2">
-            Total:{" "}
+            Total:
             <span className="text-danger">{totalCart().toLocaleString()}$</span>
           </h5>
         </tfoot>

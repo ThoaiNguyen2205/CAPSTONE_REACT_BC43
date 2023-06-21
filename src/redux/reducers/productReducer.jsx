@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { http, httpDetail } from "../../util/config";
+import {
+  getStorageJSON,
+  http,
+  httpDetail,
+  saveStorageJSON,
+} from "../../util/config";
 
 const initialState = {
   arrProduct: [],
@@ -34,6 +39,8 @@ const productReducer = createSlice({
         prodCart.quantityCart += 1;
       } else {
         state.arrProductCart.push(prodAdd);
+        const cartJSON = state.arrProductCart;
+        saveStorageJSON("arrCart", cartJSON);
       }
     },
     delProdCartAction: (state, action) => {

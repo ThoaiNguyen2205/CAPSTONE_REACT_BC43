@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "../../assets/scss/scsspages/profile.scss";
 import { useFormik } from "formik";
-
+import { history } from "../../index";
 import {
   getProfileAction,
   getProfileActionApi,
@@ -17,14 +17,17 @@ const Profile = () => {
   const { userProfile } = useSelector((state) => state.loginReducer);
   const dispatch = useDispatch();
 
-  // const getProfileApi = () => {
-  //   const action = getProfileActionApi();
-  //   dispatch(action);
-  // };
+  const getProfileApi = () => {
+    const action = getProfileActionApi();
+    dispatch(action);
+  };
 
+  // useEffect(() => {
+  //   dispatch(getProfileActionApi());
+  // }, [dispatch]);
   useEffect(() => {
-    dispatch(getProfileActionApi());
-  }, [dispatch]);
+    getProfileApi();
+  }, []);
 
   const profileForm = useFormik({
     enableReinitialize: true,
@@ -62,11 +65,13 @@ const Profile = () => {
       console.log("update", updateProfile);
       const action = updateProfile(updatedProfile);
       dispatch(action); // Cập nhật userProfile trong Redux Store
-      alert("Update finished");
+      alert("Cập nhật thành công");
+      // history.push("/profile");
       console.log("update", res);
     } catch (err) {
       console.log(err);
       alert(err.response?.data.message);
+      return;
     }
   };
 

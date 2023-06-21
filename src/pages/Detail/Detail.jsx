@@ -5,7 +5,7 @@ import { addToCartAction } from "../../redux/reducers/productReducer";
 import { NavLink, useParams } from "react-router-dom";
 
 import "../../assets/scss/pages/detail.scss";
-import { httpDetail } from "../../util/config";
+import { httpDetail, saveStorageJSON } from "../../util/config";
 
 const Detail = () => {
   const [productDetail, setProductDetail] = useState({
